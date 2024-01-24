@@ -4,88 +4,71 @@ import {
   Avatar,
   DarkThemeToggle,
   Dropdown,
-  Label,
   Navbar,
-  TextInput,
 } from "flowbite-react";
 import {
-  HiArchive,
   HiBell,
-  HiCog,
-  HiCurrencyDollar,
   HiEye,
-  HiInbox,
-  HiLogout,
-  HiMenuAlt1,
-  HiOutlineTicket,
-  HiSearch,
-  HiShoppingBag,
-  HiUserCircle,
-  HiUsers,
-  HiViewGrid,
-  HiX,
 } from "react-icons/hi";
-import { useSidebarContext } from "../context/SidebarContext";
-import isSmallScreen from "../helpers/is-small-screen";
 
 const ExampleNavbar: FC = function () {
-  const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } =
-    useSidebarContext();
+  // const { isOpenOnSmallScreens, isPageWithSidebar, setOpenOnSmallScreens } =
+  //   useSidebarContext();
 
   return (
     <Navbar fluid>
       <div className="w-full p-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            {isPageWithSidebar && (
-              <button
-                onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}
-                className="mr-3 cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:inline"
-              >
-                <span className="sr-only">Toggle sidebar</span>
-                {isOpenOnSmallScreens && isSmallScreen() ? (
-                  <HiX className="h-6 w-6" />
-                ) : (
-                  <HiMenuAlt1 className="h-6 w-6" />
-                )}
-              </button>
-            )}
+            {/*{isPageWithSidebar && (*/}
+            {/*  <button*/}
+            {/*    onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}*/}
+            {/*    className="mr-3 cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white lg:inline"*/}
+            {/*  >*/}
+            {/*    <span className="sr-only">Toggle sidebar</span>*/}
+            {/*    {isOpenOnSmallScreens && isSmallScreen() ? (*/}
+            {/*      <HiX className="h-6 w-6" />*/}
+            {/*    ) : (*/}
+            {/*      <HiMenuAlt1 className="h-6 w-6" />*/}
+            {/*    )}*/}
+            {/*  </button>*/}
+            {/*)}*/}
             <Navbar.Brand href="/">
               <img
-                alt=""
-                src="https://flowbite.com/docs/images/logo.svg"
+                alt="Healthomatic logo"
+                src="/images/logo.png"
                 className="mr-3 h-6 sm:h-8"
               />
-              <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-                Flowbite
+              <span className="self-center whitespace-nowrap text-xl lg:text-2xl font-semibold dark:text-white">
+                Healthomatic
               </span>
             </Navbar.Brand>
-            <form className="ml-16 hidden md:block">
-              <Label htmlFor="search" className="sr-only">
-                Search
-              </Label>
-              <TextInput
-                icon={HiSearch}
-                id="search"
-                name="search"
-                placeholder="Search"
-                required
-                size={32}
-                type="search"
-              />
-            </form>
+            {/*<form className="ml-16 hidden md:block">*/}
+            {/*  <Label htmlFor="search" className="sr-only">*/}
+            {/*    Search*/}
+            {/*  </Label>*/}
+            {/*  <TextInput*/}
+            {/*    icon={HiSearch}*/}
+            {/*    id="search"*/}
+            {/*    name="search"*/}
+            {/*    placeholder="Search"*/}
+            {/*    required*/}
+            {/*    size={32}*/}
+            {/*    type="search"*/}
+            {/*  />*/}
+            {/*</form>*/}
           </div>
           <div className="flex items-center lg:gap-3">
             <div className="flex items-center">
-              <button
-                onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}
-                className="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"
-              >
-                <span className="sr-only">Search</span>
-                <HiSearch className="h-6 w-6" />
-              </button>
+              {/*<button*/}
+              {/*  onClick={() => setOpenOnSmallScreens(!isOpenOnSmallScreens)}*/}
+              {/*  className="cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700 lg:hidden"*/}
+              {/*>*/}
+              {/*  <span className="sr-only">Search</span>*/}
+              {/*  <HiSearch className="h-6 w-6" />*/}
+              {/*</button>*/}
               <NotificationBellDropdown />
-              <AppDrawerDropdown />
+              {/*<AppDrawerDropdown />*/}
               <DarkThemeToggle />
             </div>
             <div className="hidden lg:block">
@@ -345,108 +328,6 @@ const NewVideoIcon: FC = function () {
     >
       <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
     </svg>
-  );
-};
-
-const AppDrawerDropdown: FC = function () {
-  return (
-    <Dropdown
-      arrowIcon={false}
-      inline
-      label={
-        <span className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-          <span className="sr-only">Apps</span>
-          <HiViewGrid className="text-2xl text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" />
-        </span>
-      }
-    >
-      <div className="block rounded-t-lg border-b bg-gray-50 py-2 px-4 text-center text-base font-medium text-gray-700 dark:border-b-gray-600 dark:bg-gray-700 dark:text-white">
-        Apps
-      </div>
-      <div className="grid grid-cols-3 gap-4 p-4">
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiShoppingBag className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Sales
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiUsers className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Users
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiInbox className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Inbox
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiUserCircle className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Profile
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiCog className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Settings
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiArchive className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Products
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiCurrencyDollar className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Pricing
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiOutlineTicket className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Billing
-          </div>
-        </a>
-        <a
-          href="#"
-          className="block rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-gray-600"
-        >
-          <HiLogout className="mx-auto mb-1 h-7 w-7 text-gray-500 dark:text-white" />
-          <div className="text-sm font-medium text-gray-900 dark:text-white">
-            Logout
-          </div>
-        </a>
-      </div>
-    </Dropdown>
   );
 };
 

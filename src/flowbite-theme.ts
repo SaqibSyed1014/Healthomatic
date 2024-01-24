@@ -22,6 +22,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       info: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       primary:
         "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+      lightPrimary: "text-primary-700 bg-primary-100 dark:!text-primary-700 hover:bg-primary-200"
     },
     inner: {
       base: "flex items-center transition-all duration-200",
@@ -41,6 +42,11 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     content: "",
   },
   modal: {
+    root: {
+      show: {
+        on: "flex bg-black bg-opacity-80 dark:bg-opacity-80"
+      }
+    },
     content: {
       inner: "relative rounded-lg bg-white shadow dark:bg-gray-800",
     },
@@ -66,7 +72,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     },
   },
   textarea: {
-    base: "block w-full text-sm p-4 rounded-lg border disabled:cursor-not-allowed disabled:opacity-50",
+    base: "block w-full text-sm 2xl:text-base p-4 rounded-lg border disabled:cursor-not-allowed disabled:opacity-50",
   },
   textInput: {
     field: {
@@ -88,6 +94,23 @@ const flowbiteTheme: CustomFlowbiteTheme = {
         },
       },
     },
+  },
+  tab: {
+    tablist: {
+      styles: {
+        underline: "flex-wrap -mb-px border-b border-gray-200 dark:border-gray-700 w-full  grid grid-flow-col"
+      },
+      tabitem: {
+        base: "flex items-center justify-center p-4 rounded-t-lg text-sm 2xl:text-lg font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:ring-0 active:ring-0 focus:outline-none",
+        styles: {
+          underline: {
+            active: {
+              on: "text-primary-600 rounded-t-lg border-b-2 border-primary-600"
+            }
+          }
+        }
+      }
+    }
   },
 };
 

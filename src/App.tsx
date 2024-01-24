@@ -25,6 +25,8 @@ import UserProfilePage from "./pages/users/profile";
 import UserSettingsPage from "./pages/users/settings";
 import FlowbiteWrapper from "./components/flowbite-wrapper";
 
+import CreateForm from "./pages/create-course/create-form";
+
 const App: FC = function () {
   return (
     <BrowserRouter>
@@ -70,6 +72,8 @@ const App: FC = function () {
           <Route path="/users/list" element={<UserListPage />} />
           <Route path="/users/profile" element={<UserProfilePage />} />
           <Route path="/users/settings" element={<UserSettingsPage />} />
+
+          <Route path="/course/create" element={<CreateForm />} />
         </Route>
       </Routes>
     </BrowserRouter>

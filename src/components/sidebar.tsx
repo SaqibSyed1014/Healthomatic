@@ -62,6 +62,15 @@ const ExampleSidebar: FC = function () {
             <Sidebar.Items>
               <Sidebar.ItemGroup>
                 <Sidebar.Item
+                    href="/course/create"
+                    icon={HiChartPie}
+                    className={
+                      "/course/create" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""
+                    }
+                >
+                  Course Creation
+                </Sidebar.Item>
+                <Sidebar.Item
                   href="/"
                   icon={HiChartPie}
                   className={

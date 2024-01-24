@@ -182,3 +182,20 @@
 .fc .fc-daygrid-day-frame {
   @apply hover:bg-gray-50 cursor-pointer !important;
 }
+
+
+.stepper-form form{
+  @apply flex flex-col gap-6
+}
+.stepper-form form.grid-view{
+  @apply grid md:grid-cols-2 gap-6
+}
+label{
+  @apply pb-2 inline-block
+}
+.stepper-form form h2{
+  @apply font-bold text-xl 2xl:text-2xl dark:text-white pt-2 md:px-3
+}
+.stepper-form form h3{
+  @apply font-bold text-lg 2xl:text-xl dark:text-white
+}
