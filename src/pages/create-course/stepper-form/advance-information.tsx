@@ -1,18 +1,9 @@
 import type { FC } from "react";
 import {Button, Label, Select, FileInput} from "flowbite-react";
 import InputWithOptions from "../../../components/input-with-options";
+import {duration, languages} from "../../../data/contants";
 
 const AdvanceInformation: FC = () => {
-    const languages = [
-        'English',
-        'Chinese',
-        'Spanish'
-    ]
-    const duration = [
-        '15 days',
-        'One Month',
-        'Three Months'
-    ]
 
     return (
         <form className="grid-view">
@@ -21,7 +12,7 @@ const AdvanceInformation: FC = () => {
             </div>
 
             <div>
-                <Label>Course Thumbnail</Label>
+                {/*<Label>Course Thumbnail</Label>*/}
                 <div
                     className="dark:hover:bg-bray-800 flex h-52 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                 >
@@ -40,17 +31,23 @@ const AdvanceInformation: FC = () => {
                                 192x258 pixels or 32:43 Ratio. Supported format:
                                 <span className="font-bold">.jpg, .jpeg, or .png</span>
                             </p>
-                            <Button size="sm" color="lightPrimary">
-                                Upload Image <span className="icon-upload-outline ml-2"/>
-                            </Button>
+                            <div>
+                                <Button
+                                    size="sm"
+                                    color="lightPrimary"
+                                    onClick={() => document.getElementById("thumbnail-file")?.click()}
+                                >
+                                    Upload Image <span className="icon-upload-outline ml-2"/>
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                    <FileInput id="dropzone-file" className="hidden" />
+                    <FileInput id="thumbnail-file" className="hidden" />
                 </div>
             </div>
 
             <div>
-                <Label>Course Overview</Label>
+                {/*<Label>Course Overview</Label>*/}
                 <div
                     className="dark:hover:bg-bray-800 flex h-52 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                 >
@@ -65,12 +62,20 @@ const AdvanceInformation: FC = () => {
                             <p className="mb-5 text-sm 2xl:text-base text-gray-500 dark:text-gray-400">
                                 Patients who watch a well-made promo video/meaningful picture are 5X more likely to build connection and trust with their doctors.
                             </p>
-                            <Button size="sm" color="lightPrimary">
-                                Upload Image/video <span className="icon-upload-outline ml-2"/>
-                            </Button>
+                            <div>
+                                <Button
+                                    size="sm"
+                                    color="lightPrimary"
+                                    onClick={() => document.getElementById("overview-file")?.click()}
+                                >
+                                    Upload Image/video <span className="icon-upload-outline ml-2"/>
+                                </Button>
+
+                                <FileInput id="overview-file" className="hidden" />
+                            </div>
                         </div>
                     </div>
-                    <FileInput id="dropzone-file" className="hidden" />
+
                 </div>
             </div>
 
@@ -90,6 +95,7 @@ const AdvanceInformation: FC = () => {
             <div className="relative">
                 <Label htmlFor="course-duration">
                     Course Duration
+
                 </Label>
                 <Select id="course-duration" placeholder="Select..." required>
                     {duration.map(item => {

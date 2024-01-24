@@ -1,17 +1,119 @@
-import type { FC } from "react";
+import type {FC, ReactNode} from "react";
 import {useState} from "react";
 import {Button, Label, Modal, TextInput, Breadcrumb, FileInput, Dropdown} from "flowbite-react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
+import {contentOptions} from "../../../data/contants";
 
 const HandleModuleContent :FC = () => {
-    const contentOptions = [
-        <span><span className="icon-heading mr-2" /> Heading</span>,
-        <span><span className="icon-text-marker mr-2" /> Text (content)</span>,
-        <span><span className="icon-link mr-2" /> Link</span>,
-        <span><span className="icon-image-mockup mr-2" /> Image</span>,
-        <span><span className="icon-play-video mr-2" /> Video</span>
-    ]
+    const [fieldsList, setFieldList] = useState([
+        {
+            type: 'heading',
+            value: ''
+        },
+        {
+            type: 'text',
+            value: ''
+        },
+        {
+            type: 'link',
+            value: ''
+        },
+        {
+            type: 'image',
+            value: ''
+        }
+    ])
+
+    function addFieldElement(id :string) {
+        setFieldList([...fieldsList, { type: id, value: '' }])
+    }
+
+    function removeFieldElement(index :number) {
+        setFieldList((prevFieldsList) => {
+            const newFieldsList = [...prevFieldsList];
+            newFieldsList.splice(index, 1);
+            return newFieldsList;
+        })
+    }
+
+    function renderFields(id :string, index: number) {
+        let field :ReactNode | null = null
+        if (id === 'heading') {
+            field = <InputWithOptions
+                type="text"
+                name={`module-heading-${index}`}
+                label="Heading"
+                showInputCount={true}
+                showDeleteOption={true}
+                maxLength={80}
+                placeholder="Add heading here"
+                onDelete={() => removeFieldElement(index)}
+            />
+        }
+        else if (id === 'text') {
+            field = <InputWithOptions
+                label="Text"
+                name={`module-text-${index}`}
+                isTextArea={true}
+                rows={2}
+                showInputCount={true}
+                showDeleteOption={true}
+                maxLength={800}
+                placeholder="Add content"
+                onDelete={() => removeFieldElement(index)}
+            />
+        }
+        else if (id === 'link') {
+            field = <InputWithOptions
+                type="text"
+                name={`module-link-${index}`}
+                label="Link"
+                showInputCount={true}
+                showDeleteOption={true}
+                maxLength={80}
+                placeholder="Add link here"
+                onDelete={() => removeFieldElement(index)}
+            />
+        }
+        else if (id === 'image') {
+            field = <div>
+                <Label>Course Thumbnail</Label>
+                <Label
+                    htmlFor={`module-thumbnail-${index}`}
+                    className="relative dark:hover:bg-bray-800 flex h-52 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                >
+                    <div className="flex flex-col justify-center items-center gap-3 px-4 py-6">
+                        <div className="text-center">
+                            <span className="icon-upload-outline text-gray-500 dark:text-white text-xl"/>
+                            <p className="text-primary-700 dark:text-primary-500">
+                                Upload Image
+                            </p>
+                        </div>
+                        <div className="w-2/4 text-center">
+                            <p className="mb-5 text-sm 2xl:text-base text-gray-500 dark:text-gray-400">
+                                Upload your course Thumbnail here.
+                                <span className="font-bold">Important guidelines:</span>
+                                192x258 pixels or 32:43 Ratio. Supported format:
+                                <span className="font-bold">.jpg, .jpeg, or .png</span>
+                            </p>
+                        </div>
+                    </div>
+                    <FileInput id={`module-thumbnail-${index}`} className="hidden" />
+
+                    {/*Delete option*/}
+                    <span
+                        onClick={() => removeFieldElement(index)}
+                        className="icon-trash-bin absolute right-3.5 bottom-2.5 text-gray-700 dark:text-white text-sm"
+                    />
+                </Label>
+            </div>
+        }
+
+        return field
+    }
+
+
     return (
         <>
             <form>
@@ -31,62 +133,23 @@ const HandleModuleContent :FC = () => {
                     </div>
                 </div>
 
-                <InputWithOptions
-                    type="text"
-                    label="Heading"
-                    showInputCount={true}
-                    showDeleteOption={true}
-                    maxLength={80}
-                    placeholder="Add heading here"
-                />
-
-                <InputWithOptions
-                    label="Text"
-                    isTextArea={true}
-                    rows={2}
-                    showInputCount={true}
-                    showDeleteOption={true}
-                    maxLength={800}
-                    placeholder="Add content"
-                />
-
-                <InputWithOptions
-                    type="text"
-                    label="Link"
-                    showInputCount={true}
-                    showDeleteOption={true}
-                    maxLength={80}
-                    placeholder="Add link here"
-                />
-
-                <div>
-                    <Label>Course Thumbnail</Label>
-                    <div
-                        className="dark:hover:bg-bray-800 flex h-52 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                    >
-                        <div className="flex flex-col justify-center items-center gap-3 px-4 py-6">
-                            <div className="text-center">
-                                <span className="icon-upload-outline text-gray-500 dark:text-white text-xl"/>
-                                <p className="text-primary-700 dark:text-white">
-                                    Upload Image
-                                </p>
-                            </div>
-                            <div className="w-2/4 text-center">
-                                <p className="mb-5 text-sm 2xl:text-base text-gray-500 dark:text-gray-400">
-                                    Upload your course Thumbnail here.
-                                    <span className="font-bold">Important guidelines:</span>
-                                    192x258 pixels or 32:43 Ratio. Supported format:
-                                    <span className="font-bold">.jpg, .jpeg, or .png</span>
-                                </p>
-                            </div>
+                {fieldsList.map((item, index) => {
+                    return (
+                        <div key={index}>
+                            {renderFields(item.type, index)}
                         </div>
-                        <FileInput id="dropzone-file" className="hidden" />
-                    </div>
-                </div>
+                    )
+                })}
 
                 <div className="flex justify-center">
                    <Dropdown label="Add Content" color="lightPrimary" dismissOnClick={false} className="mx-auto">
-                       {contentOptions.map(item => <Dropdown.Item>{item}</Dropdown.Item>)}
+                       {contentOptions.map(item => {
+                           return (
+                               <Dropdown.Item onClick={() => addFieldElement(item.id)}>
+                                   {item.element}
+                               </Dropdown.Item>
+                           )
+                       })}
                    </Dropdown>
                 </div>
             </form>

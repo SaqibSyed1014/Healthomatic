@@ -13,6 +13,7 @@ interface FieldProps {
     isTextArea?: boolean
     rows?: number
     classes?: string
+    onDelete?: () => void
 }
 
 const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
@@ -26,7 +27,8 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
           showDeleteOption,
           rows,
           isTextArea,
-          classes
+          classes,
+          onDelete
     }) {
     const [inputValue, setInputValue] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
@@ -65,7 +67,7 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
             }
             <div className="absolute right-3.5 bottom-2.5 text-gray-700 dark:text-white text-sm flex items-center gap-3">
                 {showInputCount && <span className="input-count">{characterCount}/{maxLength}</span>}
-                {showDeleteOption && <span className="field-delete cursor-pointer"><span className="icon-trash-bin"/></span>}
+                {showDeleteOption && <span onClick={onDelete} className="field-delete cursor-pointer"><span className="icon-trash-bin"/></span>}
             </div>
         </div>
     );
