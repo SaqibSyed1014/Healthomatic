@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Routes, Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate } from "react-router-dom";
 import DashboardPage from "./pages";
 import ForgotPasswordPage from "./pages/authentication/forgot-password";
 import ProfileLockPage from "./pages/authentication/profile-lock";
@@ -26,6 +26,11 @@ import UserSettingsPage from "./pages/users/settings";
 import FlowbiteWrapper from "./components/flowbite-wrapper";
 
 import CreateForm from "./pages/create-course/create-form";
+import BasicInformation from "./pages/create-course/stepper-form/basic-information";
+import AdvanceInformation from "./pages/create-course/stepper-form/advance-information";
+import {Modules, HandleModuleContent} from "./pages/create-course/stepper-form/modules";
+import FAQ from "./pages/create-course/stepper-form/faq";
+import PublishCourse from "./pages/create-course/stepper-form/publish-course";
 
 const App: FC = function () {
   return (
@@ -73,7 +78,14 @@ const App: FC = function () {
           <Route path="/users/profile" element={<UserProfilePage />} />
           <Route path="/users/settings" element={<UserSettingsPage />} />
 
-          <Route path="/course/create" element={<CreateForm />} />
+          <Route path="/course/create" element={<CreateForm />}>
+            <Route path="basic-information" element={<BasicInformation />} />
+            <Route path="advance-information" element={<AdvanceInformation />} />
+            <Route path="faqs" element={<FAQ />} />
+            <Route path="modules" element={<Modules />} />
+            <Route path="modules/:moduleName" element={<HandleModuleContent />} />
+            <Route path="publish-course" element={<PublishCourse />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

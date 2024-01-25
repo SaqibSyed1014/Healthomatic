@@ -112,6 +112,14 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       }
     }
   },
+  breadcrumb: {
+    item: {
+      href: {
+        off: "flex items-center text-xl 2xl:text-2xl font-bold text-gray-900 dark:text-gray-400",
+        on: "flex items-center text-xl 2xl:text-2xl font-bold text-gray-700 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-400"
+      },
+    }
+  }
 };
 
 export default flowbiteTheme;
