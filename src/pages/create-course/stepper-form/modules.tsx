@@ -5,6 +5,11 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
 import {contentOptions} from "../../../data/contants";
 
+interface Module {
+    id: number | null
+    name: string
+}
+
 const HandleModuleContent :FC = () => {
     const [fieldsList, setFieldList] = useState([
         {
@@ -159,17 +164,47 @@ const HandleModuleContent :FC = () => {
 
 
 const Modules: FC = () => {
-    const moduleItem = { id: 1, name: '' };
+    const moduleItem :Module = { id: 1, name: '' };
     const [modulesList, setList] = useState([
         moduleItem
     ])
+    const [selectedModule, setSelectedModule] = useState<Module>({ id: null, name: '' })
 
     const [openEditModal, setEditModal] = useState(false);
     const [openDeleteModal, setDeleteModal] = useState(false);
     const [showAddView, setAddView] = useState(false);
 
-    function addFaqItem() {
-        setList([...modulesList, moduleItem])
+    function addModuleItem() {   // add module item in the list
+        setList((prevModulesList) => {
+            const lastItemId = prevModulesList.length > 0 ? prevModulesList[prevModulesList.length - 1]?.id : 0;
+            const newModuleItem = { ...moduleItem, id: lastItemId + 1 };
+            return [...prevModulesList, newModuleItem];
+        });
+    }
+    function setSelectedModuleName(item :Module, type :string) {  // handler for module options
+        setSelectedModule(item);
+        type === 'edit' ? setEditModal(true) : setDeleteModal(true);
+    }
+
+    function openModuleContentView(item: Module) {  // open module content view of clicked module
+        setSelectedModule(item);
+        setAddView(true);
+    }
+
+    const updateModuleName = () => {  // update module name
+        setList((prevFields :any[]) => {
+            const newFields = [...prevFields];
+            return newFields.map((obj, index) => index + 1 === selectedModule.id ? selectedModule : obj)
+        });
+        setEditModal(false);
+    }
+
+    const removeModuleItem = () => {   // delete module item
+        setList((prevFields :any[]) => {
+            const newFields = [...prevFields];
+            return newFields.filter((obj) => obj.id !== selectedModule.id);
+        });
+        setDeleteModal(false);
     }
 
     const DefaultView = <form>
@@ -180,26 +215,29 @@ const Modules: FC = () => {
         <div className="flex justify-between items-center">
             <h3>Modules ({modulesList.length}/10)</h3>
             <span
-                onClick={addFaqItem}
+                onClick={addModuleItem}
                 className={`${modulesList.length === 10 ? 'text-gray-600 cursor-not-allowed' : 'text-blue-700 cursor-pointer'}`}
             >
                     <span className="icon-plus mr-2"/> Add new module
                 </span>
         </div>
         <div className="border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
-            {modulesList.map(() => {
+            {modulesList.map((item) => {
                 return (
                     <div className="flex justify-between items-center border border-gray-300 rounded-lg p-4">
                         <div className="flex items-center gap-3 text-gray-800 dark:text-white">
                             <RxHamburgerMenu className="cursor-pointer"/>
-                            <p>Module Name</p>
+                            <p>{item.name.length ? item.name : 'Module Name'}</p>
                         </div>
                         <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
-                            <Button onClick={() => setAddView(true)} size="sm" color="lightPrimary">
+                            <Button
+                                disabled={!item.name.length}
+                                onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
+                            >
                                 Add Content <span className="icon-plus ml-2"/>
                             </Button>
-                            <span onClick={() => setEditModal(true)} className="icon-edit cursor-pointer"></span>
-                            <span onClick={() => setDeleteModal(true)} className="icon-trash-bin cursor-pointer"></span>
+                            <span onClick={() => setSelectedModuleName(item, 'edit')} className="icon-edit cursor-pointer"></span>
+                            <span onClick={() => setSelectedModuleName(item, 'delete')} className="icon-trash-bin cursor-pointer"></span>
                         </div>
                     </div>
                 )
@@ -220,7 +258,7 @@ const Modules: FC = () => {
             {showAddView ? <HandleModuleContent /> : DefaultView}
 
             <Modal size="sm" dismissible show={openEditModal} onClose={() => setEditModal(false)}>
-                <Modal.Header>Edit Module Name</Modal.Header>
+                <Modal.Header>{selectedModule?.name ? 'Edit':'Add'} Module Name</Modal.Header>
                 <Modal.Body className="pt-0">
                     <p className="text-gray-500 dark:text-white pb-4">Make sure it matches the content!</p>
 
@@ -228,15 +266,17 @@ const Modules: FC = () => {
                         Module Name
                     </Label>
                     <TextInput
+                        value={selectedModule.name}
                         type="text"
                         id="module-name"
                         name="module-name"
                         placeholder="Module Name"
+                        onChange={(e) => setSelectedModule({ ...selectedModule, name: e.target.value})}
                     />
 
                     <div className="flex justify-center gap-4 pt-5">
-                        <Button color="failure" onClick={() => setEditModal(false)}>
-                            {"Yes, I'm sure"}
+                        <Button color="failure" onClick={() => updateModuleName()}>
+                            Yes, I'm sure
                         </Button>
                         <Button color="gray" onClick={() => setEditModal(false)}>
                             No, cancel
@@ -254,7 +294,7 @@ const Modules: FC = () => {
                     </h3>
 
                     <div className="flex justify-center gap-4 pt-5">
-                        <Button color="failure" onClick={() => setDeleteModal(false)}>
+                        <Button color="failure" onClick={() => removeModuleItem()}>
                             {"Yes, I'm sure"}
                         </Button>
                         <Button color="gray" onClick={() => setDeleteModal(false)}>
