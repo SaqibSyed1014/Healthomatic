@@ -4,7 +4,7 @@ import {Button, Label, Modal, TextInput, Breadcrumb, FileInput, Dropdown} from "
 import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
 import {contentOptions} from "../../../data/contants";
-import {useNavigate, useLocation, useParams, Link} from "react-router-dom";
+import {useNavigate, useParams, Link} from "react-router-dom";
 
 interface Module {
     id: number | null
@@ -26,7 +26,7 @@ const Modules: FC = () => {
     function addModuleItem() {   // add module item in the list
         setList((prevModulesList) => {
             const lastItemId = prevModulesList.length > 0 ? prevModulesList[prevModulesList.length - 1]?.id : 0;
-            const newModuleItem = { ...moduleItem, id: lastItemId + 1 };
+            const newModuleItem = { ...moduleItem, id: lastItemId! + 1 };
             return [...prevModulesList, newModuleItem];
         });
     }
