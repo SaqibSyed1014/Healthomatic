@@ -73,9 +73,9 @@ const Modules: FC = () => {
                 </span>
                 </div>
                 <div className="border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
-                    {modulesList.map((item) => {
+                    {modulesList.map((item, index) => {
                         return (
-                            <div className="flex justify-between items-center border border-gray-300 rounded-lg p-4">
+                            <div key={index} className="flex justify-between items-center border border-gray-300 rounded-lg p-4">
                                 <div className="flex items-center gap-3 text-gray-800 dark:text-white">
                                     <RxHamburgerMenu className="cursor-pointer"/>
                                     <p>{item.name.length ? item.name : 'Module Name'}</p>
@@ -119,10 +119,16 @@ const Modules: FC = () => {
                     <Label htmlFor="module-name">
                         Module Name
                     </Label>
+                    <InputWithOptions
+                        type="text"
+                        name="module-name"
+                        value={selectedModule.name}
+                        placeholder="Module Name"
+                        getInputValue={(e) => setSelectedModule({ ...selectedModule, name: e})}
+                    />
                     <TextInput
                         value={selectedModule.name}
                         type="text"
-                        id="module-name"
                         name="module-name"
                         placeholder="Module Name"
                         onChange={(e) => setSelectedModule({ ...selectedModule, name: e.target.value})}
@@ -306,7 +312,7 @@ const HandleModuleContent :FC = () => {
                    <Dropdown label="Add Content" color="lightPrimary" dismissOnClick={false} className="mx-auto">
                        {contentOptions.map(item => {
                            return (
-                               <Dropdown.Item onClick={() => addFieldElement(item.id)}>
+                               <Dropdown.Item key={item.id} onClick={() => addFieldElement(item.id)}>
                                    {item.element}
                                </Dropdown.Item>
                            )

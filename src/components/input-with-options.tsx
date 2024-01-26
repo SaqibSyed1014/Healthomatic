@@ -6,6 +6,7 @@ interface FieldProps {
     type?: string
     name: string
     label?: string
+    value: string
     placeholder: string
     showInputCount?: boolean
     maxLength?: number
@@ -13,6 +14,7 @@ interface FieldProps {
     isTextArea?: boolean
     rows?: number
     classes?: string
+    getInputValue: (val :string) => void
     onDelete?: () => void
 }
 
@@ -21,6 +23,7 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
           type,
           name,
           label,
+          value,
           placeholder,
           maxLength,
           showInputCount,
@@ -28,15 +31,17 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
           rows,
           isTextArea,
           classes,
+          getInputValue,
           onDelete
     }) {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(value || '');
     const [characterCount, setCharacterCount] = useState(0);
 
     const handleInputChange = (event :any) => {
         const newValue = event.target.value;
+        if (showInputCount) setCharacterCount(newValue.length);
         setInputValue(newValue);
-        setCharacterCount(newValue.length);
+        getInputValue(newValue);
     };
 
     const baseClasses = [
@@ -51,18 +56,20 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
                 <Textarea
                     id={name}
                     name={name}
+                    value={inputValue}
                     placeholder={placeholder}
                     rows={rows}
+                    onChange={handleInputChange}
                 />
                 :
                 <TextInput
                     type={type}
                     id={name}
                     name={name}
-                    placeholder={placeholder}
                     value={inputValue}
-                    onChange={handleInputChange}
+                    placeholder={placeholder}
                     maxLength={maxLength}
+                    onChange={handleInputChange}
                 />
             }
             <div className="absolute right-3.5 bottom-2.5 text-gray-700 dark:text-white text-sm flex items-center gap-3">

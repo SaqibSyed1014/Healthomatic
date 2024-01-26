@@ -31,7 +31,7 @@ const FAQ: FC = () => {
             </div>
             {faqsList.map((_, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                         <InputWithOptions
                             type="text"
                             name={`course-question-${index+1}`}

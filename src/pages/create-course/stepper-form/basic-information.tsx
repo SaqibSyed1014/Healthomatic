@@ -4,6 +4,29 @@ import {useState} from "react";
 import InputWithOptions from "../../../components/input-with-options";
 
 const BasicInformation: FC = () => {
+
+    // const testData = JSON.stringify({ id: 0, name: "test" })
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const data = await fetch('https://api.jsonbin.io/v3/b', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'X-Master-Key': '$2a$10$ukUpxVTMEfauzkdr8Q7wiO4idPTFcYTZ1mAN11RUAyW08X2wzG3Ea',
+    //                 'X-Collection-Id': '65b282c9dc746540189aa01c'
+    //             },
+    //             body: testData
+    //         })
+    //             .then(response => {
+    //                 return response.json()
+    //             })
+    //
+    //         console.log('hhhh ', data);
+    //     }
+    //
+    //     fetchData()
+    // }, []);
+
     const teachItem = { description: '' };
     const [teachList, setList] = useState([
         teachItem
@@ -63,6 +86,7 @@ const BasicInformation: FC = () => {
             {teachList.map((_, index) => {
                     return (
                             <InputWithOptions
+                                key={index}
                                 type="text"
                                 name={`course-description-${index+1}`}
                                 label={`0${index+1}.`}
