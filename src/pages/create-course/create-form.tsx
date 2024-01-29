@@ -45,7 +45,9 @@ const CreateForm: FC = function () {
 
     useEffect(() => {
         const updatedTabList = tabList.map((item) => {
-            if(item.path === location.pathname) return { ...item, active: true }
+            if(item.path === location.pathname || location.pathname.startsWith(`${item.path}/`)) {  // checks if route or nested route matches
+                return {...item, active: true}
+            }
             else return item
         })
 

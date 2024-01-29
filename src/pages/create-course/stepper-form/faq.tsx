@@ -83,7 +83,7 @@ const FAQ: FC = () => {
                             value={item.answer}
                             name={`course-question-${index+1}`}
                             showInputCount={true}
-                            maxLength={80}
+                            maxLength={120}
                             placeholder="Add answer here"
                             classes="pt-2"
                             getInputValue={val => updateFaqItem(val, index, 'answer')}
@@ -91,6 +91,8 @@ const FAQ: FC = () => {
                     </div>
                 )
             })}
+
+            <hr />
 
             <div className="flex justify-between">
                 <Link to="/course/create/advance-information">
