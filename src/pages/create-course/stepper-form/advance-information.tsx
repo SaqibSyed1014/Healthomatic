@@ -54,7 +54,7 @@ const AdvanceInformation: FC = () => {
                 btnLabel="Upload Image"
             >
                 Upload your course Thumbnail here.
-                <span className="font-bold">Important guidelines:</span>
+                <span className="font-bold"> Important guidelines:</span>
                 192x258 pixels or 32:43 Ratio. Supported format:
                 <span className="font-bold">.jpg, .jpeg, or .png</span>
             </FileInputField>

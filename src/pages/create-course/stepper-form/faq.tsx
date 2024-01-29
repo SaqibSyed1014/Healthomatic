@@ -2,7 +2,7 @@ import type {FC} from "react";
 import {useState} from "react";
 import {Button} from "flowbite-react";
 import InputWithOptions from "../../../components/input-with-options";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import {CourseInfo, FaqsList} from "../../../@core/types";
 
 interface FaqItem {
@@ -33,7 +33,7 @@ const FAQ: FC = () => {
             faqsList: faqsList
         };
         localStorage.setItem('form-state', JSON.stringify(payload))
-        navigate('/course/create/faqs')
+        navigate('/course/create/modules')
     }
 
     function updateFaqItem(val: string, itemIndex: number, type :string) {
@@ -93,7 +93,9 @@ const FAQ: FC = () => {
             })}
 
             <div className="flex justify-between">
-                <Button color="gray">Previous</Button>
+                <Link to="/course/create/advance-information">
+                    <Button color="gray">Previous</Button>
+                </Link>
                 <Button
                     color="primary"
                     onClick={() => handleSaveOperation()}

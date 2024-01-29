@@ -1,10 +1,11 @@
 import type {FC, ReactNode} from "react";
 import {useState} from "react";
-import {Button, Label, Modal, Breadcrumb, FileInput, Dropdown} from "flowbite-react";
+import {Button, Label, Modal, Breadcrumb, FileInput, Dropdown, Tooltip} from "flowbite-react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
 import {contentOptions} from "../../../data/contants";
 import {useNavigate, useParams, Link} from "react-router-dom";
+import FileInputField from "../../../components/file-input";
 
 interface Module {
     id: number | null
@@ -86,19 +87,21 @@ const Modules: FC = () => {
                                         <p>{item.name.length ? item.name : 'Module Name'}</p>
                                     </div>
                                     <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
-                                        <Button
-                                            disabled={!item.name.length}
-                                            onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
-                                        >
-                                            Add Content <span className="icon-plus ml-2"/>
-                                        </Button>
+                                        <Tooltip content="Add module name first">
+                                            <Button
+                                                disabled={!item.name.length}
+                                                onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
+                                            >
+                                                Add Content <span className="icon-plus ml-2"/>
+                                            </Button>
+                                        </Tooltip>
                                         <span
                                             onClick={() => setSelectedModuleName(item, 'edit')}
                                             className="icon-edit cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
                                         />
                                         <span
                                             onClick={() => setSelectedModuleName(item, 'delete')}
-                                            className="icon-trash-bin cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
+                                            className="icon-trash-bin cursor-pointer"
                                         />
                                     </div>
                                 </div>
@@ -135,11 +138,13 @@ const Modules: FC = () => {
                         name="module-name"
                         value={selectedModule.name}
                         placeholder="Module Name"
+                        showInputCount={true}
+                        maxLength={24}
                         getInputValue={(e) => setSelectedModule({ ...selectedModule, name: e})}
                     />
 
                     <div className="flex justify-center gap-4 pt-5">
-                        <Button color="failure" onClick={() => updateModuleName()}>
+                        <Button color="primary" onClick={() => updateModuleName()}>
                             Yes, I'm sure
                         </Button>
                         <Button color="gray" onClick={() => setEditModal(false)}>
@@ -210,6 +215,7 @@ const HandleModuleContent :FC = () => {
         let field :ReactNode | null = null
         if (id === 'heading') {
             field = <InputWithOptions
+                key={index}
                 type="text"
                 name={`module-heading-${index}`}
                 label="Heading"
@@ -222,6 +228,7 @@ const HandleModuleContent :FC = () => {
         }
         else if (id === 'text') {
             field = <InputWithOptions
+                key={index}
                 label="Text"
                 name={`module-text-${index}`}
                 isTextArea={true}
@@ -235,9 +242,11 @@ const HandleModuleContent :FC = () => {
         }
         else if (id === 'link') {
             field = <InputWithOptions
+                key={index}
                 type="text"
                 name={`module-link-${index}`}
                 label="Link"
+                hasLink={true}
                 showInputCount={true}
                 showDeleteOption={true}
                 maxLength={80}
@@ -246,37 +255,35 @@ const HandleModuleContent :FC = () => {
             />
         }
         else if (id === 'image') {
-            field = <div>
-                <Label>Course Thumbnail</Label>
-                <Label
-                    htmlFor={`module-thumbnail-${index}`}
-                    className="relative dark:hover:bg-bray-800 flex h-52 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                >
-                    <div className="flex flex-col justify-center items-center gap-3 px-4 py-6">
-                        <div className="text-center">
-                            <span className="icon-upload-outline text-gray-500 dark:text-white text-xl"/>
-                            <p className="text-primary-700 dark:text-primary-500">
-                                Upload Image
-                            </p>
-                        </div>
-                        <div className="w-2/4 text-center">
-                            <p className="mb-5 text-sm 2xl:text-base text-gray-500 dark:text-gray-400">
-                                Upload your course Thumbnail here.
-                                <span className="font-bold">Important guidelines:</span>
-                                192x258 pixels or 32:43 Ratio. Supported format:
-                                <span className="font-bold">.jpg, .jpeg, or .png</span>
-                            </p>
-                        </div>
-                    </div>
-                    <FileInput id={`module-thumbnail-${index}`} className="hidden" />
-
-                    {/*Delete option*/}
-                    <span
-                        onClick={() => removeFieldElement(index)}
-                        className="icon-trash-bin absolute right-3.5 bottom-2.5 text-gray-700 dark:text-white text-sm"
-                    />
-                </Label>
-            </div>
+            field = <FileInputField
+                key={index}
+                type="image"
+                id={`module-image-${index}`}
+                label="Image"
+                iconLabel="Upload Image"
+                showDeleteOption={true}
+                rowView={true}
+                onDelete={() => removeFieldElement(index)}
+            >
+                Upload your course Thumbnail here.
+                <span className="font-bold"> Important guidelines:</span>
+                192x258 pixels or 32:43 Ratio. Supported format:
+                <span className="font-bold">.jpg, .jpeg, or .png</span>
+            </FileInputField>
+        }
+        else if (id === 'video') {
+            field = <FileInputField
+                key={index}
+                type="video"
+                id={`module-video-${index}`}
+                label="Video"
+                iconLabel="Upload Video"
+                showDeleteOption={true}
+                rowView={true}
+                onDelete={() => removeFieldElement(index)}
+            >
+                Patients who watch a well-made promo video/meaningful picture are 5X more likely to build connection and trust with their doctors.
+            </FileInputField>
         }
 
         return field

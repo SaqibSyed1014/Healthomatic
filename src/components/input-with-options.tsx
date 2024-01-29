@@ -10,6 +10,7 @@ interface FieldProps {
     placeholder: string
     showInputCount?: boolean
     maxLength?: number
+    hasLink?: boolean
     showDeleteOption?: boolean
     isTextArea?: boolean
     rows?: number
@@ -26,6 +27,7 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
           value,
           placeholder,
           maxLength,
+          hasLink,
           showInputCount,
           showDeleteOption,
           rows,
@@ -40,9 +42,18 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
     const handleInputChange = (event :any) => {
         const newValue = event.target.value;
         if (showInputCount) setCharacterCount(newValue.length);
+        if (hasLink) validateLinks();
         setInputValue(newValue);
         getInputValue(newValue);
     };
+
+    const [showError, setError] = useState(false);
+    function validateLinks() {
+        const linkRegex = /^(https?|ftp):\/\/(www\.)?[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$|^www\.[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$/;
+        if (!linkRegex.test(inputValue)) {
+            setError(true)
+        } else setError(false)
+    }
 
     const baseClasses = [
         'relative',
@@ -67,6 +78,7 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
                     id={name}
                     name={name}
                     value={inputValue}
+                    color={showError && inputValue ? 'failure' : 'gray'}
                     placeholder={placeholder}
                     maxLength={maxLength}
                     onChange={handleInputChange}
@@ -74,7 +86,8 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
             }
             <div className="absolute right-3.5 bottom-2.5 text-gray-700 dark:text-white text-sm flex items-center gap-3">
                 {showInputCount && <span className="input-count">{characterCount}/{maxLength}</span>}
-                {showDeleteOption && <span onClick={onDelete} className="field-delete cursor-pointer"><span className="icon-trash-bin"/></span>}
+                {showDeleteOption && <span onClick={onDelete} className="field-delete">
+                    <span className="icon-trash-bin"/></span>}
             </div>
         </div>
     );
