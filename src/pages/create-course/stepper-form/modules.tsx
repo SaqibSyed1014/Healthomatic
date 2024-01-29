@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from "react";
 import {useState} from "react";
-import {Button, Label, Modal, TextInput, Breadcrumb, FileInput, Dropdown} from "flowbite-react";
+import {Button, Label, Modal, Breadcrumb, FileInput, Dropdown} from "flowbite-react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
 import {contentOptions} from "../../../data/contants";
@@ -56,6 +56,10 @@ const Modules: FC = () => {
         setDeleteModal(false);
     }
 
+    function handleSaveOperation() {
+        navigate('/course/create/publish-course')
+    }
+
     return (
         <>
             <form>
@@ -72,38 +76,45 @@ const Modules: FC = () => {
                     <span className="icon-plus mr-2"/> Add new module
                 </span>
                 </div>
-                <div className="border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
-                    {modulesList.map((item, index) => {
-                        return (
-                            <div key={index} className="flex justify-between items-center border border-gray-300 rounded-lg p-4">
-                                <div className="flex items-center gap-3 text-gray-800 dark:text-white">
-                                    <RxHamburgerMenu className="cursor-pointer"/>
-                                    <p>{item.name.length ? item.name : 'Module Name'}</p>
+                { Boolean(modulesList.length) &&
+                    <div className="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
+                        {modulesList.map((item, index) => {
+                            return (
+                                <div key={index} className="flex justify-between items-center bg-white dark:bg-gray-600 border border-gray-300 rounded-lg p-4">
+                                    <div className="flex items-center gap-3 text-gray-800 dark:text-white">
+                                        <RxHamburgerMenu className="cursor-pointer text-gray-500 dark:text-gray-300"/>
+                                        <p>{item.name.length ? item.name : 'Module Name'}</p>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
+                                        <Button
+                                            disabled={!item.name.length}
+                                            onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
+                                        >
+                                            Add Content <span className="icon-plus ml-2"/>
+                                        </Button>
+                                        <span
+                                            onClick={() => setSelectedModuleName(item, 'edit')}
+                                            className="icon-edit cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
+                                        />
+                                        <span
+                                            onClick={() => setSelectedModuleName(item, 'delete')}
+                                            className="icon-trash-bin cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
-                                    <Button
-                                        disabled={!item.name.length}
-                                        onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
-                                    >
-                                        Add Content <span className="icon-plus ml-2"/>
-                                    </Button>
-                                    <span
-                                        onClick={() => setSelectedModuleName(item, 'edit')}
-                                        className="icon-edit cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
-                                    />
-                                    <span
-                                        onClick={() => setSelectedModuleName(item, 'delete')}
-                                        className="icon-trash-bin cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
-                                    />
-                                </div>
-                            </div>
-                        )
-                    })}</div>
+                            )
+                        })}</div>
+                }
 
                 <div className="flex justify-between">
-                    <Button color="gray">Previous</Button>
+                    <Link to="/course/create/faqs">
+                        <Button
+                            color="gray"
+                        >Previous</Button>
+                    </Link>
                     <Button
                         color="primary"
+                        onClick={() => handleSaveOperation()}
                     >
                         Save & Next
                     </Button>
@@ -277,8 +288,14 @@ const HandleModuleContent :FC = () => {
             <form>
                 <div className="flex justify-between items-center">
                     <Breadcrumb aria-label="Default breadcrumb example">
-                        <Breadcrumb.Item href="/course/create/modules">Modules</Breadcrumb.Item>
-                        <Breadcrumb.Item>{params['moduleName']}</Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                            <Link to="/course/create/modules" className="text-gray-700 dark:text-gray-400">Modules</Link>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item>
+                            <span className="text-gray-900 dark:text-gray-300">
+                                {params['moduleName']}
+                            </span>
+                        </Breadcrumb.Item>
                     </Breadcrumb>
 
                     <div className="flex gap-2">

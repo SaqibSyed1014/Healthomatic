@@ -101,7 +101,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
         underline: "flex-wrap -mb-px border-b border-gray-200 dark:border-gray-700 w-full  grid grid-flow-col"
       },
       tabitem: {
-        base: "flex items-center justify-center p-4 rounded-t-lg text-sm 2xl:text-lg font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:ring-0 active:ring-0 focus:outline-none",
+        base: "flex items-center justify-center rounded-t-lg text-sm 2xl:text-lg font-medium first:ml-0 disabled:cursor-not-allowed disabled:text-gray-400 disabled:dark:text-gray-500 focus:ring-0 active:ring-0 focus:outline-none",
         styles: {
           underline: {
             active: {
@@ -110,13 +110,13 @@ const flowbiteTheme: CustomFlowbiteTheme = {
           }
         }
       }
-    }
+    },
+    tabpanel: "py-0"
   },
   breadcrumb: {
     item: {
       href: {
         off: "flex items-center text-xl 2xl:text-2xl font-bold text-gray-900 dark:text-gray-400",
-        on: "flex items-center text-xl 2xl:text-2xl font-bold text-gray-700 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-400"
       },
     }
   }

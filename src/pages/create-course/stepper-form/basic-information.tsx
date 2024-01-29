@@ -2,7 +2,7 @@ import type { FC } from "react";
 import {Label, Select, Button} from "flowbite-react";
 import {useState} from "react";
 import InputWithOptions from "../../../components/input-with-options";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import {BasicInfo} from "../../../@core/types";
 
 
@@ -72,7 +72,7 @@ const BasicInformation: FC = () => {
         <form>
             <h2>Basic information</h2>
 
-            <hr className="border-b border-r-gray-200"/>
+            <hr />
 
             <InputWithOptions
                 type="text"
@@ -108,13 +108,13 @@ const BasicInformation: FC = () => {
                 </Select>
             </div>
 
-            <hr className="border-b border-r-gray-200"/>
+            <hr />
 
             <div className="flex justify-between items-center">
-                <h3>What you will teach in this course ({ teachList.length }/6)</h3>
+                <h3>What you will teach in this course ({ basicInfoFormState.teachingList.length }/6)</h3>
                 <span
                     onClick={addTeachItem}
-                    className={`${teachList.length === 6 ? 'text-gray-600 cursor-not-allowed' : 'text-blue-700 cursor-pointer'}`}
+                    className={`${basicInfoFormState.teachingList.length === 6 ? 'text-gray-600 cursor-not-allowed' : 'text-blue-700 cursor-pointer'}`}
                 >
                     + Add new
                 </span>
@@ -136,7 +136,10 @@ const BasicInformation: FC = () => {
                 })
             }
 
-            <div>
+            <div className="col-span-2 flex justify-between">
+                <Link to="/">
+                    <Button color="gray">Back</Button>
+                </Link>
                 <Button
                     color="primary"
                     className="ml-auto"
