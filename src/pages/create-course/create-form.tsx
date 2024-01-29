@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import NavbarSidebarLayout from "../../layouts/navbar-sidebar";
 import { Tabs } from 'flowbite-react';
-import {useLocation, Link, Outlet} from "react-router-dom";
+import {useLocation, Link, Outlet, Navigate} from "react-router-dom";
 
 const baseClasses: string = 'flex items-center gap-2 2xl:gap-3'
 
@@ -30,6 +30,11 @@ const tabList = [
 
 const CreateForm: FC = function () {
     const location = useLocation()
+
+    const isParentRoute = window.location.pathname.endsWith('/course/create');
+    if (isParentRoute) {  // redirect to First step when user navigates to this route
+        return <Navigate to="/course/create/basic-information" replace />;
+    }
 
     return (
         <NavbarSidebarLayout isFooter={false}>

@@ -1,9 +1,40 @@
 import type { FC } from "react";
+import {useEffect} from 'react';
 import {Button, Label, Select, FileInput} from "flowbite-react";
 import InputWithOptions from "../../../components/input-with-options";
 import {duration, languages} from "../../../data/contants";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {AdvanceInfo, CourseInfo} from "../../../@core/types";
 
 const AdvanceInformation: FC = () => {
+    const initialState :AdvanceInfo = {
+        language: '',
+        duration: '',
+        description: ''
+    }
+
+    let prevFormState: CourseInfo | null = null;
+    const storedFormData = localStorage.getItem('form-state');
+    useEffect(() => {
+        console.log('test ', storedFormData);
+        if (storedFormData !== null) {
+            prevFormState = JSON.parse(storedFormData) as CourseInfo;
+        }
+    }, []);
+
+    const [advanceInfoState, setAdvanceInfoForm] = useState<AdvanceInfo>(prevFormState?.advanceInformation || initialState);
+
+    console.log('tetet ', prevFormState?.advanceInformation, advanceInfoState)
+    const navigate = useNavigate();
+    function handleSaveOperation() {
+        const payload = {
+            ...prevFormState,
+            advanceInformation: advanceInfoState
+        };
+        localStorage.setItem('form-state', JSON.stringify(payload))
+        navigate('/course/create/faqs')
+    }
 
     return (
         <form className="grid-view">
@@ -83,10 +114,17 @@ const AdvanceInformation: FC = () => {
                 <Label htmlFor="course-language">
                     Course Language
                 </Label>
-                <Select id="course-language" placeholder="Select..." required>
+                <Select
+                    id="course-language"
+                    placeholder="Select..."
+                    onChange={(e) => setAdvanceInfoForm({ ...advanceInfoState, language: e.target.value })}
+                >
                     {languages.map(item => {
                         return (
-                            <option key={item}>{item}</option>
+                            <option
+                                key={item}
+                                value={item}
+                            >{item}</option>
                         )
                     })}
                 </Select>
@@ -97,10 +135,17 @@ const AdvanceInformation: FC = () => {
                     Course Duration
 
                 </Label>
-                <Select id="course-duration" placeholder="Select..." required>
+                <Select
+                    id="course-duration"
+                    placeholder="Select..."
+                    onChange={(e) => setAdvanceInfoForm({ ...advanceInfoState, duration: e.target.value })}
+                >
                     {duration.map(item => {
                         return (
-                            <option key={item}>{item}</option>
+                            <option
+                                key={item}
+                                value={item}
+                            >{item}</option>
                         )
                     })}
                 </Select>
@@ -111,8 +156,10 @@ const AdvanceInformation: FC = () => {
                     isTextArea={true}
                     rows={6}
                     name="course-description"
+                    value={advanceInfoState.description}
                     label="Course Desscription"
                     placeholder="Enter you course descriptions"
+                    getInputValue={(val) => setAdvanceInfoForm({ ...advanceInfoState, description: val })}
                 />
             </div>
 
@@ -120,6 +167,7 @@ const AdvanceInformation: FC = () => {
                 <Button color="gray">Previous</Button>
                 <Button
                     color="primary"
+                    onClick={() => handleSaveOperation()}
                 >
                     Save & Next
                 </Button>

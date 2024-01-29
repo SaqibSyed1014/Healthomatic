@@ -1,16 +1,50 @@
-import type { FC } from "react";
-import {Button} from "flowbite-react";
+import type {FC} from "react";
 import {useState} from "react";
+import {Button} from "flowbite-react";
 import InputWithOptions from "../../../components/input-with-options";
+import {useNavigate} from "react-router-dom";
+import {CourseInfo, FaqsList} from "../../../@core/types";
+
+interface FaqItem {
+    question: string
+    answer: string
+}
 
 const FAQ: FC = () => {
-    const faqItem = { question: '', answer: '' };
-    const [faqsList, setList] = useState([
+    let prevFormState: CourseInfo | null = null;
+    const storedFormData = localStorage.getItem('form-state');
+    if (storedFormData !== null) {
+        prevFormState = JSON.parse(storedFormData) as CourseInfo;
+    }
+
+    const faqItem: FaqItem = { question: '', answer: '' };
+    const [faqsList, setList] = useState<FaqsList>([
         faqItem
     ])
 
     function addFaqItem() {
         setList([...faqsList, faqItem])
+    }
+
+    const navigate = useNavigate();
+    function handleSaveOperation() {
+        const payload = {
+            ...(prevFormState as CourseInfo),
+            faqsList: faqsList
+        };
+        localStorage.setItem('form-state', JSON.stringify(payload))
+        navigate('/course/create/faqs')
+    }
+
+    function updateFaqItem(val: string, itemIndex: number, type :string) {
+        setList((prevState) => {
+            return prevState.map((item, index) => {
+                if (index === itemIndex) {
+                    return type === 'question' ? {...item, question: val} : {...item, answer: val};
+                }
+                return item;
+            })
+        });
     }
 
     return (
@@ -29,26 +63,30 @@ const FAQ: FC = () => {
                     + Add new
                 </span>
             </div>
-            {faqsList.map((_, index) => {
+            {faqsList.map((item, index) => {
                 return (
                     <div key={index}>
                         <InputWithOptions
                             type="text"
+                            value={item.question}
                             name={`course-question-${index+1}`}
                             label={`0${index+1}.`}
                             showInputCount={true}
                             maxLength={80}
                             placeholder="Add question here"
+                            getInputValue={val => updateFaqItem(val, index, 'question')}
                         />
 
                         <InputWithOptions
                             isTextArea={true}
                             rows={2}
+                            value={item.answer}
                             name={`course-question-${index+1}`}
                             showInputCount={true}
                             maxLength={80}
                             placeholder="Add answer here"
                             classes="pt-2"
+                            getInputValue={val => updateFaqItem(val, index, 'answer')}
                         />
                     </div>
                 )
@@ -58,6 +96,7 @@ const FAQ: FC = () => {
                 <Button color="gray">Previous</Button>
                 <Button
                     color="primary"
+                    onClick={() => handleSaveOperation()}
                 >
                     Save & Next
                 </Button>

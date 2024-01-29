@@ -2,9 +2,22 @@ import type { FC } from "react";
 import {Label, Select, Button} from "flowbite-react";
 import {useState} from "react";
 import InputWithOptions from "../../../components/input-with-options";
+import {useNavigate} from "react-router-dom";
+import {BasicInfo} from "../../../@core/types";
+
 
 const BasicInformation: FC = () => {
+    const teachList = [
+        { id: 1, description: '' }
+    ]
+    const initialState :BasicInfo = {
+        subject: '',
+        title: '',
+        category: '',
+        teachingList: teachList
+    }
 
+    const [basicInfoFormState, setBasicInfoForm] = useState<BasicInfo>(initialState)
     // const testData = JSON.stringify({ id: 0, name: "test" })
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -27,13 +40,32 @@ const BasicInformation: FC = () => {
     //     fetchData()
     // }, []);
 
-    const teachItem = { description: '' };
-    const [teachList, setList] = useState([
-        teachItem
-    ])
-
     function addTeachItem() {
-        setList([...teachList, teachItem])
+        const newItem = { id: basicInfoFormState.teachingList.length + 1, description: '' };
+        setBasicInfoForm(prevState => ({
+            ...prevState,
+            teachingList: [...prevState.teachingList, newItem],
+        }))
+    }
+
+    function updateTeachingItem(newDesc: string, id: number) {
+        const updatedTeachingList = basicInfoFormState.teachingList.map(item =>
+            item.id === id ? { ...item, description: newDesc } : item
+        );
+
+        setBasicInfoForm(prevState => ({
+            ...prevState,
+            teachingList: updatedTeachingList,
+        }));
+    }
+
+    const navigate = useNavigate();
+    function handleSaveOperation() {
+        const payload = {
+            basicInformation: basicInfoFormState
+        };
+        localStorage.setItem('form-state', JSON.stringify(payload))
+        navigate('/course/create/advance-information')
     }
 
     return (
@@ -46,18 +78,22 @@ const BasicInformation: FC = () => {
                 type="text"
                 name="course-subject"
                 label="Subject"
+                value={basicInfoFormState.subject}
                 showInputCount={true}
                 maxLength={24}
                 placeholder="Your course subject"
+                getInputValue={(val) => setBasicInfoForm({ ...basicInfoFormState, subject: val })}
             />
 
             <InputWithOptions
                 type="text"
                 name="course-title"
                 label="Title"
+                value={basicInfoFormState.title}
                 showInputCount={true}
                 maxLength={50}
                 placeholder="Your course title"
+                getInputValue={(val) => setBasicInfoForm({ ...basicInfoFormState, title: val })}
             />
 
             <div className="relative">
@@ -83,16 +119,18 @@ const BasicInformation: FC = () => {
                     + Add new
                 </span>
             </div>
-            {teachList.map((_, index) => {
+            {basicInfoFormState.teachingList.map((item, index) => {
                     return (
                             <InputWithOptions
-                                key={index}
+                                key={item.id}
                                 type="text"
                                 name={`course-description-${index+1}`}
                                 label={`0${index+1}.`}
+                                value={item.description}
                                 showInputCount={true}
                                 maxLength={80}
                                 placeholder="What you will teach in this course"
+                                getInputValue={val => updateTeachingItem(val, item.id)}
                             />
                     )
                 })
@@ -102,6 +140,7 @@ const BasicInformation: FC = () => {
                 <Button
                     color="primary"
                     className="ml-auto"
+                    onClick={() => handleSaveOperation()}
                 >
                     Save & Next
                 </Button>

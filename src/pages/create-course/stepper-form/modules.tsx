@@ -126,13 +126,6 @@ const Modules: FC = () => {
                         placeholder="Module Name"
                         getInputValue={(e) => setSelectedModule({ ...selectedModule, name: e})}
                     />
-                    <TextInput
-                        value={selectedModule.name}
-                        type="text"
-                        name="module-name"
-                        placeholder="Module Name"
-                        onChange={(e) => setSelectedModule({ ...selectedModule, name: e.target.value})}
-                    />
 
                     <div className="flex justify-center gap-4 pt-5">
                         <Button color="failure" onClick={() => updateModuleName()}>
