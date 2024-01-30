@@ -6,7 +6,7 @@ interface FieldProps {
     type?: string
     name: string
     label?: string
-    value: string
+    value?: string
     placeholder: string
     showInputCount?: boolean
     maxLength?: number

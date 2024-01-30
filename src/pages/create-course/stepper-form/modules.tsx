@@ -252,6 +252,7 @@ const HandleModuleContent :FC = () => {
                 maxLength={80}
                 placeholder="Add heading here"
                 onDelete={() => removeFieldElement(index)}
+                getInputValue={() => {}}
             />
         }
         else if (id === 'text') {
@@ -266,6 +267,7 @@ const HandleModuleContent :FC = () => {
                 maxLength={800}
                 placeholder="Add content"
                 onDelete={() => removeFieldElement(index)}
+                getInputValue={() => {}}
             />
         }
         else if (id === 'link') {
@@ -280,6 +282,7 @@ const HandleModuleContent :FC = () => {
                 maxLength={80}
                 placeholder="Add link here"
                 onDelete={() => removeFieldElement(index)}
+                getInputValue={() => {}}
             />
         }
         else if (id === 'image') {
@@ -292,6 +295,7 @@ const HandleModuleContent :FC = () => {
                 showDeleteOption={true}
                 rowView={true}
                 onDelete={() => removeFieldElement(index)}
+                getInputValue={() => {}}
             >
                 Upload your course Thumbnail here.
                 <span className="font-bold"> Important guidelines:</span>
@@ -309,6 +313,7 @@ const HandleModuleContent :FC = () => {
                 showDeleteOption={true}
                 rowView={true}
                 onDelete={() => removeFieldElement(index)}
+                getInputValue={() => {}}
             >
                 Patients who watch a well-made promo video/meaningful picture are 5X more likely to build connection and trust with their doctors.
             </FileInputField>

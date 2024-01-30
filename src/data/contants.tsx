@@ -70,32 +70,32 @@ export const categoryFilterOptions = [
 export const courseList = [
     {
         title: 'Powering innovation at 200,00+ companies worldwide',
-        image: '../../../public/images/feed/image-2.jpg',
+        image: '../../../images/feed/image-2.jpg',
         description: 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and...',
         tags: ['Medical Science'],
         receiversCount: 22,
         selectedUser: [
             {
                 name: 'Abdul Wahab',
-                image: '../../../public/images/users/bonnie-green.png'
+                image: '../../../images/users/bonnie-green.png'
             },
             {
                 name: 'Oscar Garcia',
-                image: '../../../public/images/users/helene-engels.png'
+                image: '../../../images/users/helene-engels.png'
             },
             {
                 name: 'Yareli Bowen',
-                image: '../../../public/images/users/neil-sims.png'
+                image: '../../../images/users/neil-sims.png'
             },
             {
                 name: 'Kaysen Rivas',
-                image: '../../../public/images/users/robert-brown.png'
+                image: '../../../images/users/robert-brown.png'
             },
         ]
     },
     {
         title: 'Powering innovation at 200,00+ companies worldwide',
-        image: '../../../public/images/feed/image-2.jpg',
+        image: '../../../images/feed/image-2.jpg',
         description: 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and...',
         tags: ['Medical Science'],
         receiversCount: 0,
@@ -103,32 +103,32 @@ export const courseList = [
     },
     {
         title: 'Powering innovation at 200,00+ companies worldwide',
-        image: '../../../public/images/feed/image-2.jpg',
+        image: '../../../images/feed/image-2.jpg',
         description: 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and...',
         tags: ['Medical Science'],
         receiversCount: 15,
         selectedUser: [
             {
                 name: 'Abdul Wahab',
-                image: '../../../public/images/users/bonnie-green.png'
+                image: '../../../images/users/bonnie-green.png'
             },
             {
                 name: 'Oscar Garcia',
-                image: '../../../public/images/users/helene-engels.png'
+                image: '../../../images/users/helene-engels.png'
             },
             {
                 name: 'Yareli Bowen',
-                image: '../../../public/images/users/neil-sims.png'
+                image: '../../../images/users/neil-sims.png'
             },
             {
                 name: 'Kaysen Rivas',
-                image: '../../../public/images/users/robert-brown.png'
+                image: '../../../images/users/robert-brown.png'
             },
         ]
     },
     {
         title: 'Powering innovation at 200,00+ companies worldwide',
-        image: '../../../public/images/feed/image-2.jpg',
+        image: '../../../images/feed/image-2.jpg',
         description: 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and...',
         tags: ['Medical Science'],
         receiversCount: 0,
@@ -136,26 +136,26 @@ export const courseList = [
     },
     {
         title: 'Powering innovation at 200,00+ companies worldwide',
-        image: '../../../public/images/feed/image-2.jpg',
+        image: '../../../images/feed/image-2.jpg',
         description: 'Empower Developers, IT Ops, and business teams to collaborate at high velocity. Respond to changes and...',
         tags: ['Medical Science'],
         receiversCount: 15,
         selectedUser: [
             {
                 name: 'Abdul Wahab',
-                image: '../../../public/images/users/bonnie-green.png'
+                image: '../../../images/users/bonnie-green.png'
             },
             {
                 name: 'Oscar Garcia',
-                image: '../../../public/images/users/helene-engels.png'
+                image: '../../../images/users/helene-engels.png'
             },
             {
                 name: 'Yareli Bowen',
-                image: '../../../public/images/users/neil-sims.png'
+                image: '../../../images/users/neil-sims.png'
             },
             {
                 name: 'Kaysen Rivas',
-                image: '../../../public/images/users/robert-brown.png'
+                image: '../../../images/users/robert-brown.png'
             },
         ]
     }
@@ -164,22 +164,22 @@ export const courseList = [
 export const suggestedUsers = [
         {
             name: 'Abdul Wahab',
-            image: '../../../public/images/users/roberta-casas.png'
+            image: '../../../images/users/roberta-casas.png'
         },
         {
             name: 'Oscar Garcia',
-            image: '../../../public/images/users/thomas-lean.png'
+            image: '../../../images/users/thomas-lean.png'
         },
         {
             name: 'Yareli Bowen',
-            image: '../../../public/images/users/michael-gough.png'
+            image: '../../../images/users/michael-gough.png'
         },
         {
             name: 'Kaysen Rivas',
-            image: '../../../public/images/users/lana-byrd.png'
+            image: '../../../images/users/lana-byrd.png'
         },
         {
             name: 'Gael Soto',
-            image: '../../../public/images/users/joseph-mcfall.png'
+            image: '../../../images/users/joseph-mcfall.png'
         },
 ]

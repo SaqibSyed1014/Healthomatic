@@ -6,7 +6,7 @@ interface FileFieldProps {
     type: 'image' | 'video' | 'both'
     id: string
     label: string
-    value: string
+    value?: string
     iconLabel: string
     btnLabel?: string
     size?: string
