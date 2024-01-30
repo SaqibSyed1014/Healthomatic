@@ -17,6 +17,8 @@ export interface AdvanceInfo {
     language: string
     duration: string
     description: string
+    thumbnail: string
+    overview: string
 }
 export interface FaqsList extends Array<FaqItem> {}
 

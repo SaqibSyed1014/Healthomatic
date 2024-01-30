@@ -7,8 +7,10 @@ const flowbiteTheme: CustomFlowbiteTheme = {
         info: "bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-300",
         primary:
           "bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-300",
+        lightGray: "bg-gray-200 text-gray-500 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-gray-300 dark:group-hover:bg-blue-300"
       },
       size: {
+        lg: "px-3 py-1 text-sm rounded-md",
         xl: "px-3 py-2 text-base rounded-md",
       },
     },
@@ -35,7 +37,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
   },
   dropdown: {
     floating: {
-      base: "z-10 w-fit rounded-xl divide-y divide-gray-100 shadow",
+      base: "z-10 w-fit rounded-xl divide-y divide-gray-100 shadow focus:outline-none",
       content: "rounded-xl text-sm text-gray-700 dark:text-gray-200",
       target: "w-fit dark:text-white",
     },

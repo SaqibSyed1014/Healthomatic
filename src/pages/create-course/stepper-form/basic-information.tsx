@@ -41,11 +41,13 @@ const BasicInformation: FC = () => {
     // }, []);
 
     function addTeachItem() {
-        const newItem = { id: basicInfoFormState.teachingList.length + 1, description: '' };
-        setBasicInfoForm(prevState => ({
-            ...prevState,
-            teachingList: [...prevState.teachingList, newItem],
-        }))
+        if (basicInfoFormState.teachingList.length < 6) {
+            const newItem = {id: basicInfoFormState.teachingList.length + 1, description: ''};
+            setBasicInfoForm(prevState => ({
+                ...prevState,
+                teachingList: [...prevState.teachingList, newItem],
+            }))
+        }
     }
 
     function updateTeachingItem(newDesc: string, id: number) {

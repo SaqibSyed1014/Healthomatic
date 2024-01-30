@@ -209,5 +209,5 @@ label{
   outline: 2px solid theme('colors.primary.700');
 }
 .icon-trash-bin{
-  @apply cursor-pointer transition hover:text-red-600
+  @apply cursor-pointer transition hover:text-red-600 dark:hover:text-red-400
 }

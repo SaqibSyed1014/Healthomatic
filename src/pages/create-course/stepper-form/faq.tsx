@@ -23,7 +23,7 @@ const FAQ: FC = () => {
     ])
 
     function addFaqItem() {
-        setList([...faqsList, faqItem])
+        if (faqsList.length < 4) setList([...faqsList, faqItem])
     }
 
     const navigate = useNavigate();
@@ -83,7 +83,7 @@ const FAQ: FC = () => {
                             value={item.answer}
                             name={`course-question-${index+1}`}
                             showInputCount={true}
-                            maxLength={120}
+                            maxLength={240}
                             placeholder="Add answer here"
                             classes="pt-2"
                             getInputValue={val => updateFaqItem(val, index, 'answer')}

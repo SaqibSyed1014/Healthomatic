@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Routes, Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import DashboardPage from "./pages";
 import ForgotPasswordPage from "./pages/authentication/forgot-password";
 import ProfileLockPage from "./pages/authentication/profile-lock";
@@ -25,6 +25,7 @@ import UserProfilePage from "./pages/users/profile";
 import UserSettingsPage from "./pages/users/settings";
 import FlowbiteWrapper from "./components/flowbite-wrapper";
 
+import Courses from "./pages/courses";
 import CreateForm from "./pages/create-course/create-form";
 import BasicInformation from "./pages/create-course/stepper-form/basic-information";
 import AdvanceInformation from "./pages/create-course/stepper-form/advance-information";
@@ -77,6 +78,8 @@ const App: FC = function () {
           <Route path="/users/list" element={<UserListPage />} />
           <Route path="/users/profile" element={<UserProfilePage />} />
           <Route path="/users/settings" element={<UserSettingsPage />} />
+
+          <Route path="/courses" element={<Courses />} />
 
           <Route path="/course/create" element={<CreateForm />}>
             <Route path="basic-information" element={<BasicInformation />} />

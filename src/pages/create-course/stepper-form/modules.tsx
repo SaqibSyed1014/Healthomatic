@@ -1,7 +1,7 @@
 import type {FC, ReactNode} from "react";
 import {useState} from "react";
-import {Button, Label, Modal, Breadcrumb, FileInput, Dropdown, Tooltip} from "flowbite-react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import {Button, Label, Modal, Breadcrumb, Dropdown, Tooltip} from "flowbite-react";
+// import { RxHamburgerMenu } from "react-icons/rx";
 import InputWithOptions from "../../../components/input-with-options";
 import {contentOptions} from "../../../data/contants";
 import {useNavigate, useParams, Link} from "react-router-dom";
@@ -24,12 +24,16 @@ const Modules: FC = () => {
     const [openEditModal, setEditModal] = useState(false);
     const [openDeleteModal, setDeleteModal] = useState(false);
 
+    const [disableEditModal, setDisableEditModal] = useState(true);
+
     function addModuleItem() {   // add module item in the list
-        setList((prevModulesList) => {
-            const lastItemId = prevModulesList.length > 0 ? prevModulesList[prevModulesList.length - 1]?.id : 0;
-            const newModuleItem = { ...moduleItem, id: lastItemId! + 1 };
-            return [...prevModulesList, newModuleItem];
-        });
+        if (modulesList.length < 10) {
+            setList((prevModulesList) => {
+                const lastItemId = prevModulesList.length > 0 ? prevModulesList[prevModulesList.length - 1]?.id : 0;
+                const newModuleItem = {...moduleItem, id: lastItemId! + 1};
+                return [...prevModulesList, newModuleItem];
+            });
+        }
     }
     function setSelectedModuleName(item :Module, type :string) {  // handler for module options
         setSelectedModule(item);
@@ -77,36 +81,50 @@ const Modules: FC = () => {
                     <span className="icon-plus mr-2"/> Add new module
                 </span>
                 </div>
-                { Boolean(modulesList.length) &&
-                    <div className="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
-                        {modulesList.map((item, index) => {
-                            return (
-                                <div key={index} className="flex justify-between items-center bg-white dark:bg-gray-600 border border-gray-300 rounded-lg p-4">
-                                    <div className="flex items-center gap-3 text-gray-800 dark:text-white">
-                                        <RxHamburgerMenu className="cursor-pointer text-gray-500 dark:text-gray-300"/>
-                                        <p>{item.name.length ? item.name : 'Module Name'}</p>
+                {
+                    Boolean(modulesList.length) &&
+                        <div className="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-3 p-5">
+                            {modulesList.map((item, index) => {
+                                return (
+                                    <div key={index} className="flex justify-between items-center bg-white dark:bg-gray-600 border border-gray-300 rounded-lg p-4">
+                                        <div className="flex items-center gap-3 text-gray-800 dark:text-white">
+                                            {/*<RxHamburgerMenu className="cursor-pointer text-gray-500 dark:text-gray-300"/>*/}
+                                            <p>{item.name.length ? item.name : 'Module Name'}</p>
+                                        </div>
+                                        <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
+
+                                            {
+                                                item.name.length ?
+                                                    <Button
+                                                        onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
+                                                    >
+                                                        Add Content <span className="icon-plus ml-2"/>
+                                                    </Button>
+
+                                                    :
+
+                                                    <Tooltip content="Add module name first">
+                                                        <Button
+                                                            disabled={true}
+                                                        >
+                                                            Add Content <span className="icon-plus ml-2"/>
+                                                        </Button>
+                                                    </Tooltip>
+                                            }
+
+
+                                            <span
+                                                onClick={() => setSelectedModuleName(item, 'edit')}
+                                                className="icon-edit cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
+                                            />
+                                            <span
+                                                onClick={() => setSelectedModuleName(item, 'delete')}
+                                                className="icon-trash-bin cursor-pointer"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-3 text-lg text-gray-500 dark:text-white">
-                                        <Tooltip content="Add module name first">
-                                            <Button
-                                                disabled={!item.name.length}
-                                                onClick={() => openModuleContentView(item)} size="sm" color="lightPrimary"
-                                            >
-                                                Add Content <span className="icon-plus ml-2"/>
-                                            </Button>
-                                        </Tooltip>
-                                        <span
-                                            onClick={() => setSelectedModuleName(item, 'edit')}
-                                            className="icon-edit cursor-pointer hover:text-gray-600 dark:hover:text-gray-400"
-                                        />
-                                        <span
-                                            onClick={() => setSelectedModuleName(item, 'delete')}
-                                            className="icon-trash-bin cursor-pointer"
-                                        />
-                                    </div>
-                                </div>
-                            )
-                        })}</div>
+                                )
+                            })}</div>
                 }
 
                 <div className="flex justify-between">
@@ -140,12 +158,18 @@ const Modules: FC = () => {
                         placeholder="Module Name"
                         showInputCount={true}
                         maxLength={24}
+                        avoidSlash={true}
+                        getErrorState={(e) => setDisableEditModal(e)}
                         getInputValue={(e) => setSelectedModule({ ...selectedModule, name: e})}
                     />
 
                     <div className="flex justify-center gap-4 pt-5">
-                        <Button color="primary" onClick={() => updateModuleName()}>
-                            Yes, I'm sure
+                        <Button
+                            color="primary"
+                            disabled={disableEditModal || !selectedModule.name.length}
+                            onClick={() => updateModuleName()}
+                        >
+                            Yes, I'm sure {disableEditModal}
                         </Button>
                         <Button color="gray" onClick={() => setEditModal(false)}>
                             No, cancel
@@ -195,6 +219,10 @@ const HandleModuleContent :FC = () => {
         },
         {
             type: 'image',
+            value: ''
+        },
+        {
+            type: 'video',
             value: ''
         }
     ])
@@ -340,7 +368,6 @@ const HandleModuleContent :FC = () => {
         </>
     )
 }
-
 
 
 export { Modules, HandleModuleContent }

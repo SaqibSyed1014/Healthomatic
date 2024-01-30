@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import {PropsWithChildren, useState} from 'react';
+import {PropsWithChildren, useEffect, useState} from 'react';
 import {Label, Textarea, TextInput} from "flowbite-react";
 
 interface FieldProps {
@@ -15,7 +15,9 @@ interface FieldProps {
     isTextArea?: boolean
     rows?: number
     classes?: string
+    avoidSlash?: boolean
     getInputValue: (val :string) => void
+    getErrorState?: (val :boolean) => void
     onDelete?: () => void
 }
 
@@ -33,26 +35,43 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
           rows,
           isTextArea,
           classes,
+          avoidSlash,
           getInputValue,
+          getErrorState,
           onDelete
     }) {
     const [inputValue, setInputValue] = useState(value || '');
     const [characterCount, setCharacterCount] = useState(0);
+    const [showError, setError] = useState(false);
+
+    useEffect(() => {
+        if (showInputCount) setCharacterCount(inputValue.length);
+        if (hasLink) validateLinks();
+        if (avoidSlash) validateSlashes();
+    }, [inputValue]);
+
+    useEffect(() => {
+        console.log('test it ', showError)
+        if (getErrorState) getErrorState(showError);
+    }, [showError]);
 
     const handleInputChange = (event :any) => {
         const newValue = event.target.value;
-        if (showInputCount) setCharacterCount(newValue.length);
-        if (hasLink) validateLinks();
         setInputValue(newValue);
         getInputValue(newValue);
     };
 
-    const [showError, setError] = useState(false);
     function validateLinks() {
-        const linkRegex = /^(https?|ftp):\/\/(www\.)?[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$|^www\.[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$/;
-        if (!linkRegex.test(inputValue)) {
-            setError(true)
-        } else setError(false)
+        const linkRegex = /^(https?|ftp):\/\/(www\.)?[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$|^www\.[^\s/$.?#]+\.(com|edu|gov|org|tech)(\/[^\s]*)?$/
+
+        if (!linkRegex.test(inputValue)) setError(true)
+        else setError(false)
+    }
+
+    function validateSlashes() {
+        const specialCharacterRegex = /[#^*_+=\[\]{};':"\\|,<>\/?]+/;
+        if (specialCharacterRegex.test(inputValue)) setError(true);
+        else setError(false);
     }
 
     const baseClasses = [
@@ -70,6 +89,7 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
                     value={inputValue}
                     placeholder={placeholder}
                     rows={rows}
+                    maxLength={maxLength}
                     onChange={handleInputChange}
                 />
                 :

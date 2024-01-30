@@ -12,7 +12,9 @@ const AdvanceInformation: FC = () => {
     const initialState :AdvanceInfo = {
         language: '',
         duration: '',
-        description: ''
+        description: '',
+        overview: '',
+        thumbnail: ''
     }
 
     let prevFormState: CourseInfo | null = null;
@@ -35,6 +37,11 @@ const AdvanceInformation: FC = () => {
         navigate('/course/create/faqs')
     }
 
+    function updateThumbnail(e :any) {
+        setAdvanceInfoForm({ ...advanceInfoState, thumbnail: e })
+        console.log('update function ', e)
+    }
+
     return (
         <form className="grid-view">
             <div className="col-span-2">
@@ -46,12 +53,15 @@ const AdvanceInformation: FC = () => {
             </div>
 
             <FileInputField
+                key={advanceInfoState.thumbnail}
                 type="image"
+                value={advanceInfoState.thumbnail}
                 id="thumbnail-file"
                 label="Course Thumbnail"
                 iconLabel="Course Thumbnail"
                 size="192*258px"
                 btnLabel="Upload Image"
+                getInputValue={(e) => updateThumbnail(e)}
             >
                 Upload your course Thumbnail here.
                 <span className="font-bold"> Important guidelines:</span>
@@ -60,11 +70,13 @@ const AdvanceInformation: FC = () => {
             </FileInputField>
 
             <FileInputField
+                value={advanceInfoState.overview}
                 type="both"
-                id="thumbnail-file"
+                id="overview-file"
                 label="Course Overview"
                 iconLabel="Course Overview "
                 btnLabel="Upload Image/video"
+                getInputValue={(e) => setAdvanceInfoForm({ ...advanceInfoState, overview: e })}
             >
                 Patients who watch a well-made promo video/meaningful picture are 5X more likely to build connection and trust with their doctors.
             </FileInputField>
