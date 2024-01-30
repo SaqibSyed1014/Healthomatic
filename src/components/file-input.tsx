@@ -82,7 +82,7 @@ const FileInputField: FC<FileFieldProps> = ({
         return (
             <div className="relative w-fit mx-auto my-4 group">
                 {type === 'video' && (
-                    <div className="w-3/4 h-[250px] mx-auto">
+                    <div className="w-3/4 h-[250px] xl:h-[350px] mx-auto">
                         <video className="w-full h-full object-contain">
                             <source src={previewFile || ''} />
                             Your browser does not support HTML5 video.
@@ -90,7 +90,7 @@ const FileInputField: FC<FileFieldProps> = ({
                     </div>
                 )}
                 {type === 'image' && (
-                    <div className="w-[200px] h-[200px]">
+                    <div className="w-3/4  h-[250px] xl:h-[350px]  mx-auto">
                         <img src={previewFile || ''} alt="Selected File" className="w-full h-full object-contain" />
                     </div>
                 )}

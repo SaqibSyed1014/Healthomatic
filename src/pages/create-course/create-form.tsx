@@ -37,6 +37,12 @@ let tabList = [
         component: <Modules />
     },
     {
+        title: <div className={baseClasses}><span className="icon-modules-list" /> Modules </div>,
+        path: '/course/create/modules/:moduleName',
+        active: false,
+        component: <Modules />
+    },
+    {
         title: <div className={baseClasses}><span className="icon-publish" /> Publish </div>,
         path: '/course/create/publish-course',
         active: false,
@@ -57,6 +63,10 @@ const CreateForm: FC = function () {
         return <Navigate to="/course/create/basic-information" replace />;
     }
 
+    const tabViewStyles = [
+        'p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6'
+    ]
+
     return (
         <NavbarSidebarLayout isFooter={false}>
             <div key={activeTab} className="px-4 pt-6">
@@ -66,7 +76,7 @@ const CreateForm: FC = function () {
                                 active={activeTab === tabList[0]?.path}
                                 title={<Link to="/course/create/basic-information" className="grow">{tabList[0]?.title}</Link>}
                             >
-                                <div className="p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6">
+                                <div className={tabViewStyles.join(' ')}>
                                     <BasicInformation />
                                 </div>
                             </Tabs.Item>
@@ -74,7 +84,7 @@ const CreateForm: FC = function () {
                             active={activeTab === tabList[1]?.path}
                             title={<Link to="/course/create/advance-information" className="grow">{tabList[1]?.title}</Link>}
                         >
-                            <div className="p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6">
+                            <div className={tabViewStyles.join(' ')}>
                                 <AdvanceInformation />
                             </div>
                         </Tabs.Item>
@@ -82,15 +92,15 @@ const CreateForm: FC = function () {
                             active={activeTab === tabList[2]?.path}
                             title={<Link to="/course/create/faqs" className="grow">{tabList[2]?.title}</Link>}
                         >
-                            <div className="p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6">
+                            <div className={tabViewStyles.join(' ')}>
                                 <Faqs />
                             </div>
                         </Tabs.Item>
                         <Tabs.Item
-                            active={activeTab === tabList[3]?.path}
+                            active={(activeTab === tabList[3]?.path) || location.pathname.startsWith(`${tabList[3]?.path}/`)}
                             title={<Link to="/course/create/modules" className="grow">{tabList[3]?.title}</Link>}
                         >
-                            <div className="p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6">
+                            <div className={tabViewStyles.join(' ')}>
                                 { location.pathname.startsWith(`${tabList[3]?.path}/`) ? <HandleModuleContent /> : <Modules />}
                             </div>
                         </Tabs.Item>
@@ -98,7 +108,7 @@ const CreateForm: FC = function () {
                             active={activeTab === tabList[4]?.path}
                             title={<Link to="/course/create/publish-course" className="grow">{tabList[4]?.title}</Link>}
                         >
-                            <div className="p-4 sm:px-6 sm:pt-4 sm:pb-6 xl:p-8 xl:pb-8 xl:pt-6">
+                            <div className={tabViewStyles.join(' ')}>
                                 <PublishCourse />
                             </div>
                         </Tabs.Item>

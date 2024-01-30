@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?txik2k');
-  src:  url('fonts/icomoon.eot?txik2k#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?txik2k') format('truetype'),
-    url('fonts/icomoon.woff?txik2k') format('woff'),
-    url('fonts/icomoon.svg?txik2k#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?choktk');
+  src:  url('fonts/icomoon.eot?choktk#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?choktk') format('truetype'),
+    url('fonts/icomoon.woff?choktk') format('woff'),
+    url('fonts/icomoon.svg?choktk#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-upload-outline:before {
+  content: "\e906";
+}
+.icon-more-dots:before {
+  content: "\e909";
+}
+.icon-modules-list:before {
+  content: "\e90f";
+}
 .icon-plus:before {
   content: "\e90e";
 }
@@ -46,17 +55,11 @@
 .icon-info-exclamation:before {
   content: "\e905";
 }
-.icon-upload-outline:before {
-  content: "\e906";
-}
 .icon-faq-question:before {
   content: "\e907";
 }
 .icon-publish:before {
   content: "\e908";
-}
-.icon-modules-list:before {
-  content: "\e909";
 }
 .icon-information-list:before {
   content: "\e90a";

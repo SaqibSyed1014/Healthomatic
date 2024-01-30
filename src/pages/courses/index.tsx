@@ -97,7 +97,7 @@ const CourseCard: FC<PropsWithChildren<Props>> = function ({ course }) {
             <div className="course-meta flex justify-between items-center">
                 <div className="course-badges">
                     {course.tags.map((item :string) => {
-                        return <Badge size="lg" color="purple">{item}</Badge>
+                        return <Badge key={item} size="lg" color="purple">{item}</Badge>
                      })}
                 </div>
 
@@ -122,10 +122,10 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ count, selected
                 renderTrigger={() => <span>{addUserElement}</span>}
             >
                 <Dropdown.Item className="hover:!bg-white w-[350px]">
-                    <div className="flex flex-col gap-3 py-2">
+                    <div className="flex flex-col gap-3 py-2 grow">
                         <div className="user-avatars flex flex-wrap gap-3">
                             {selectedUsers?.length ?
-                                selectedUsers.map((item, index) => {
+                                selectedUsers.map((item :any, index :number) => {
                                     return (
                                         <Badge key={index} color="lightGray">
                                             <div className="flex items-center gap-2">
@@ -155,9 +155,9 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ count, selected
                         <p className="text-gray-500 text-left">Suggested people</p>
 
                         <div className="flex flex-col gap-2">
-                            {suggestedUsers.map(item => {
+                            {suggestedUsers.map((item, index) => {
                                 return (
-                                    <div className="flex items-center gap-2">
+                                    <div key={index} className="flex items-center gap-2">
                                         <div className="rounded-full overflow-hidden w-[30px] h-[30px] border border-white">
                                             <img src={item.image} alt="User"
                                                  className="w-full h-full object-cover"/>
