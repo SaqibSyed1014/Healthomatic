@@ -7,7 +7,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
         info: "bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-300",
         primary:
           "bg-blue-100 text-blue-800 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-blue-200 dark:group-hover:bg-blue-300",
-        lightGray: "bg-gray-200 text-gray-500 dark:bg-blue-200 dark:text-blue-800 group-hover:bg-gray-300 dark:group-hover:bg-blue-300"
+        lightGray: "bg-gray-200 text-gray-500 dark:bg-blue-200 dark:text-blue-800 hover:bg-gray-300 dark:hover:bg-blue-300 transition"
       },
       size: {
         lg: "px-3 py-1 text-sm rounded-md",

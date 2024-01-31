@@ -81,7 +81,7 @@ const CourseCard: FC<PropsWithChildren<Props>> = function ({ course }) {
                         renderTrigger={() => <span><BsThreeDots
                             className="text-2xl text-gray-500 dark:text-white cursor-pointer"/></span>}
                     >
-                        <Dropdown.Item onClick={() => navigate('/course/create')}>
+                        <Dropdown.Item onClick={() => navigate('/course/edit/basic-information')}>
                             <span className="icon-edit mr-2"/>
                             Edit Course
                         </Dropdown.Item>
@@ -138,11 +138,6 @@ const CourseCard: FC<PropsWithChildren<Props>> = function ({ course }) {
 }
 
 const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }) {
-    const addUserElement = <div
-        className="rounded-full bg-green-600 shrink-0 flex items-center justify-center w-[20px] h-[20px] cursor-pointer">
-        <span className="icon-plus text-white text-xs pt-[2px]" />
-    </div>
-
     const [selectedUserList, setSelectedUsers] = useState([...selectedUsers])
     const [users, setUsers] = useState([...suggestedUsers])
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
@@ -169,19 +164,19 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
         <>
             <Popover
                 isOpen={isPopoverOpen}
-                positions='bottom'
+                positions={['bottom', 'top']}
                 align='start'
                 onClickOutside={() => setIsPopoverOpen(false)}
                 content={
-                    <div className="w-[325px] text-gray-500 bg-white dark:bg-gray-800 border border-gray-200 rounded-lg shadow mt-1.5">
+                    <div className="w-[325px] text-gray-500 bg-white dark:bg-gray-800 rounded-lg shadow-sm mt-1.5">
                         <div className="py-2 text-gray-500">
-                            <div className="flex flex-col gap-3 py-2 grow">
+                            <div className="flex flex-col gap-4 py-2 grow">
                                 <div className="user-avatars flex flex-wrap gap-3 px-3">
                                     {selectedUserList?.length ?
                                         selectedUserList.map((item: any, index: number) => {
                                             return (
                                                 <Badge key={index} color="lightGray">
-                                                    <div className="flex items-center">
+                                                    <div className="flex items-center group">
                                                         <div
                                                             className="rounded-full overflow-hidden w-[30px] h-[30px] border border-white">
                                                             <img src={item.image} alt="User"
@@ -192,13 +187,13 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
                                                         <RxCross2 onClick={(e) => {
                                                             e.stopPropagation();
                                                             removeUser(item)
-                                                        }} className="cursor-pointer text-lg mr-1"/>
+                                                        }} className="cursor-pointer hover:text-red-600 transition text-lg mr-1"/>
                                                     </div>
                                                 </Badge>
                                             )
                                         })
                                         :
-                                        <p className="dark:text-gray-200">No users are selected</p>
+                                        <span className="leading-none dark:text-gray-200">No users are selected</span>
                                     }
                                 </div>
 
@@ -211,9 +206,9 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
                                     className="px-3"
                                 />
 
-                                <p className="text-gray-500 font-medium text-left px-3">Suggested people</p>
+                                <p className="text-gray-500 font-medium text-left leading-none px-3">Suggested people</p>
 
-                                <div className="flex flex-col">
+                                <div className="flex flex-col -mt-1">
                                     {users?.length ?
                                         users.map((item, index) => {
                                             return (
@@ -242,7 +237,11 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
                     </div>
                 }
             >
-                <span onClick={() => setIsPopoverOpen(!isPopoverOpen)}>{addUserElement}</span>
+                <div
+                    onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                    className="rounded-full bg-green-600 hover:bg-gray-700 dark:hover:bg-gray-500 transition shrink-0 flex items-center justify-center w-[20px] h-[20px] cursor-pointer">
+                    <span className="icon-plus text-white text-xs pt-[2px]" />
+                </div>
             </Popover>
 
             {Boolean(selectedUserList.length) && <span className="dark:text-white">{selectedUserList.length}</span>}

@@ -105,8 +105,8 @@ const CreateForm: FC = function () {
                             </div>
                         </Tabs.Item>
                         <Tabs.Item
-                            active={activeTab === tabList[4]?.path}
-                            title={<Link to="/course/create/publish-course" className="grow">{tabList[4]?.title}</Link>}
+                            active={activeTab === tabList[5]?.path}
+                            title={<Link to="/course/create/publish-course" className="grow">{tabList[5]?.title}</Link>}
                         >
                             <div className={tabViewStyles.join(' ')}>
                                 <PublishCourse />

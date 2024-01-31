@@ -44,6 +44,7 @@ const FileInputField: FC<FileFieldProps> = ({
     const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
         const fileInput = event?.target?.files?.[0];
         if (fileInput) {
+            console.log('file ', fileInput);
             setFile(fileInput);
             const previewUrl = URL.createObjectURL(fileInput);
             setPreview(previewUrl);
@@ -94,15 +95,15 @@ const FileInputField: FC<FileFieldProps> = ({
                         <img src={previewFile || ''} alt="Selected File" className="w-full h-full object-contain" />
                     </div>
                 )}
-                <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-2xl text-gray-700 hidden group-hover:flex gap-2">
+                <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-xl text-gray-700 hidden group-hover:flex gap-2">
                     <div
-                        className="bg-gray-300 rounded w-9 h-9 shadow-xl flex items-center justify-center cursor-pointer"
+                        className="bg-gray-300/70 rounded-full w-10 h-10 shadow-xl flex items-center justify-center cursor-pointer"
                         onClick={() => document.getElementById(id)?.click()}
                     >
                         <span className="icon-edit"/>
                     </div>
                     <div
-                        className="bg-gray-300 rounded w-9 h-9 shadow-xl flex items-center justify-center cursor-pointer hover:text-red-600"
+                        className="bg-gray-300/70 rounded-full w-10 h-10 shadow-xl flex items-center justify-center cursor-pointer hover:text-red-600"
                         onClick={removePreview}
                     >
                         <span className="icon-trash-bin" />
@@ -138,7 +139,14 @@ const FileInputField: FC<FileFieldProps> = ({
                 <div key={previewFile} className="flex justify-center items-center gap-3 2xl:gap-4">
                     <div className="flex text-center h-[175px] w-[175px] 2xl:w-[200px] 2xl:h-[200px] shrink-0 rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         {Boolean(previewFile.length) && (
-                            <img key={previewFile} src={previewFile} alt="Selected File" className="w-full h-full object-contain" />
+                            selectedFile?.type.includes('video')
+                                ?
+                                <video controls className="w-full h-full object-contain">
+                                    <source src={previewFile || ''} />
+                                    Your browser does not support HTML5 video.
+                                </video>
+                                :
+                                <img key={previewFile} src={previewFile} alt="Selected File" className="w-full h-full object-contain" />
                         )}
                         {!previewFile && (
                             <div

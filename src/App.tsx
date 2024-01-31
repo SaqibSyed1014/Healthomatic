@@ -81,7 +81,7 @@ const App: FC = function () {
 
           <Route path="/courses" element={<Courses />} />
 
-          <Route path="/course/create" element={<CreateForm />}>
+          <Route path="/course/:mode" element={<CreateForm />}>
             <Route path="basic-information" element={<BasicInformation />} />
             <Route path="advance-information" element={<AdvanceInformation />} />
             <Route path="faqs" element={<FAQ />} />
