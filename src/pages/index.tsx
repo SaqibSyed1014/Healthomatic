@@ -89,13 +89,13 @@ const SalesThisWeek: FC = function () {
 };
 
 const SalesChart: FC = function () {
-  const { mode } = useTheme();
-  const isDarkTheme = mode === "dark";
+  // const { mode } = useTheme();
+  // const isDarkTheme = mode === "dark";
 
-  const borderColor = isDarkTheme ? "#374151" : "#F3F4F6";
-  const labelColor = isDarkTheme ? "#93ACAF" : "#6B7280";
-  const opacityFrom = isDarkTheme ? 0 : 0.45;
-  const opacityTo = isDarkTheme ? 0.15 : 0;
+  const borderColor = "#F3F4F6";
+  const labelColor = "#6B7280";
+  const opacityFrom = 0.45;
+  const opacityTo = 0;
 
   const options: ApexCharts.ApexOptions = {
     stroke: {

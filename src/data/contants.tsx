@@ -76,19 +76,13 @@ export const courseList = [
         receiversCount: 22,
         selectedUser: [
             {
-                name: 'Abdul Wahab',
-                image: '../../../images/users/bonnie-green.png'
-            },
-            {
-                name: 'Oscar Garcia',
-                image: '../../../images/users/helene-engels.png'
-            },
-            {
-                name: 'Yareli Bowen',
+                id: 11,
+                name: 'Yarelia Schon',
                 image: '../../../images/users/neil-sims.png'
             },
             {
-                name: 'Kaysen Rivas',
+                id: 14,
+                name: 'Davis B.',
                 image: '../../../images/users/robert-brown.png'
             },
         ]
@@ -109,19 +103,18 @@ export const courseList = [
         receiversCount: 15,
         selectedUser: [
             {
-                name: 'Abdul Wahab',
+                id: 10,
+                name: 'Kyle Benett',
                 image: '../../../images/users/bonnie-green.png'
             },
             {
-                name: 'Oscar Garcia',
-                image: '../../../images/users/helene-engels.png'
-            },
-            {
-                name: 'Yareli Bowen',
+                id: 11,
+                name: 'Yarelia Schon',
                 image: '../../../images/users/neil-sims.png'
             },
             {
-                name: 'Kaysen Rivas',
+                id: 14,
+                name: 'Davis B.',
                 image: '../../../images/users/robert-brown.png'
             },
         ]
@@ -142,43 +135,52 @@ export const courseList = [
         receiversCount: 15,
         selectedUser: [
             {
-                name: 'Abdul Wahab',
+                id: 10,
+                name: 'Kyle Benett',
                 image: '../../../images/users/bonnie-green.png'
             },
             {
-                name: 'Oscar Garcia',
+                id: 12,
+                name: 'Tom Oscar',
                 image: '../../../images/users/helene-engels.png'
             },
             {
-                name: 'Yareli Bowen',
+                id: 11,
+                name: 'Yarelia Schon',
                 image: '../../../images/users/neil-sims.png'
             },
             {
-                name: 'Kaysen Rivas',
+                id: 14,
+                name: 'Davis B.',
                 image: '../../../images/users/robert-brown.png'
             },
         ]
     }
 ]
 
-export const suggestedUsers = [
+export let suggestedUsers = [
         {
+            id: 1,
             name: 'Abdul Wahab',
             image: '../../../images/users/roberta-casas.png'
         },
         {
+            id: 2,
             name: 'Oscar Garcia',
             image: '../../../images/users/thomas-lean.png'
         },
         {
+            id: 3,
             name: 'Yareli Bowen',
             image: '../../../images/users/michael-gough.png'
         },
         {
-            name: 'Kaysen Rivas',
+            id: 4,
+            name: 'Kaysen',
             image: '../../../images/users/lana-byrd.png'
         },
         {
+            id: 5,
             name: 'Gael Soto',
             image: '../../../images/users/joseph-mcfall.png'
         },
