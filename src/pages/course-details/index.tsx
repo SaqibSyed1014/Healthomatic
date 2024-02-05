@@ -43,7 +43,7 @@ const CourseDetails :FC = function () {
                     <Breadcrumb aria-label="Breadcrumb">
                         <Breadcrumb.Item>
                             <Link to="/course/create/modules" className="text-sm text-gray-900 dark:text-gray-300 font-medium">
-                                Home
+                                <span className="icon-home mr-2" />Home
                             </Link>
                         </Breadcrumb.Item>
                         <Breadcrumb.Item>
@@ -58,11 +58,16 @@ const CourseDetails :FC = function () {
                             Powering innovation at 200,000+ companies worldwide
                         </h2>
 
-                        <div className="flex flex-nowrap gap-2">
+                        <div className="flex flex-nowrap items-center text-[#4E5566] dark:text-gray-200">
+                            <span className="icon-clipboard text-[#C27803] mr-1.5" />
                             <span>Category</span>
+
+                            <span className="icon-box-grid text-[#3F83F8] mr-1.5 ml-4" />
                             <span>
                                 Subject
                             </span>
+
+                            <span className="icon-stack text-[#9061F9] mr-1.5 ml-4" />
                             <span>
                                 6 Modules
                             </span>
@@ -72,7 +77,7 @@ const CourseDetails :FC = function () {
 
             </div>
 
-            <div className="course-details-section bg-white dark:bg-gray-800 pt-8">
+            <div className="course-details-section bg-white dark:bg-gray-800 pt-8 pb-14">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-12 gap-5">
                         <div className="col-span-8">
@@ -112,16 +117,21 @@ const CourseDetails :FC = function () {
                                         Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
                                     </p>
 
-                                    <div>
+                                    <div className="relative overflow-hidden rounded-sm">
                                         <img
                                             src="../../../public/images/course-video.png"
                                             alt=""
                                             className="object-cover w-full h-full"
                                         />
+
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[80px] rounded-full h-[80px] bg-white/50 cursor-pointer hover:scale-125 transition">
+                                            <span className="icon-play text-white text-4xl" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div className="col-span-4">
                             <div className="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-400 rounded py-3 px-5">
                                 <h3 className="font-bold text-base dark:text-gray-200">
