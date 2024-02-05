@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import {useEffect} from "react";
 import Navbar from "../../components/navbar";
 import {Breadcrumb, Progress, Accordion, Checkbox} from "flowbite-react";
 import {Link} from "react-router-dom";
@@ -34,8 +35,20 @@ const modulesList = [
 ]
 
 const CourseDetails :FC = function () {
+
+    function scrollToSection(id :string) {
+        const element = document.getElementById(id);
+
+        if (element) {
+            const { x, y } = element.getBoundingClientRect();
+            window.scrollTo({
+                top: y - 80,
+                behavior: "smooth",
+            });
+        }
+    }
     return (
-        <>
+        <div className="relative">
             <Navbar/>
 
             <div className="bg-gray-50 dark:bg-gray-700 pt-20 pb-3 border-y border-gray-100 dark:border-gray-400">
@@ -129,11 +142,86 @@ const CourseDetails :FC = function () {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div>
+                                    <h2 className="text-gray-900 dark:text-gray-200 font-bold text-2xl pb-6">
+                                        Powering innovation at 200,000+ companies worldwide
+                                    </h2>
+
+                                    <p>
+                                        Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.
+                                    </p>
+                                    <p>
+                                        Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
+                                    </p>
+
+                                    <div className="pb-4">
+                                        <img
+                                            src="../../../public/images/course-section-img.png"
+                                            alt="Section img"
+                                            className="object-contain w-full h-full"
+                                        />
+                                    </div>
+
+                                    <p>
+                                        Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
+                                    </p>
+
+                                    <div className="relative overflow-hidden rounded-sm">
+                                        <img
+                                            src="../../../public/images/course-video.png"
+                                            alt=""
+                                            className="object-cover w-full h-full"
+                                        />
+
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[80px] rounded-full h-[80px] bg-white/50 cursor-pointer hover:scale-125 transition">
+                                            <span className="icon-play text-white text-4xl" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="test">
+                                    <h2 className="text-gray-900 dark:text-gray-200 font-bold text-2xl pb-6">
+                                        Powering innovation at 200,000+ companies worldwide
+                                    </h2>
+
+                                    <p>
+                                        Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.
+                                    </p>
+                                    <p>
+                                        Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
+                                    </p>
+
+                                    <div className="pb-4">
+                                        <img
+                                            src="../../../public/images/course-section-img.png"
+                                            alt="Section img"
+                                            className="object-contain w-full h-full"
+                                        />
+                                    </div>
+
+                                    <p>
+                                        Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
+                                    </p>
+
+                                    <div className="relative overflow-hidden rounded-sm">
+                                        <img
+                                            src="../../../public/images/course-video.png"
+                                            alt=""
+                                            className="object-cover w-full h-full"
+                                        />
+
+                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-[80px] rounded-full h-[80px] bg-white/50 cursor-pointer hover:scale-125 transition">
+                                            <span className="icon-play text-white text-4xl" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div className="col-span-4">
-                            <div className="bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-400 rounded py-3 px-5">
+                            <div className="sticky top-20 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-400 rounded py-3 px-5">
                                 <h3 className="font-bold text-base dark:text-gray-200">
                                     Course Content
                                 </h3>
@@ -165,7 +253,7 @@ const CourseDetails :FC = function () {
                                                         <ul className="flex flex-col gap-3 list-disc marker:text-gray-500 text-gray-500 dark:text-gray-300 px-4">
                                                             {item.list.map((item, i) => {
                                                                 return (
-                                                                    <li key={i} className="text-base cursor-pointer hover:text-primary-400 transition">
+                                                                    <li onClick={() => scrollToSection('test')} key={i} className="text-base cursor-pointer hover:text-primary-400 transition">
                                                                         {item}
                                                                     </li>
                                                                 )
@@ -182,7 +270,7 @@ const CourseDetails :FC = function () {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
