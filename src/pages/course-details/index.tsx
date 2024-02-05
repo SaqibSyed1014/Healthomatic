@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import {useEffect} from "react";
 import Navbar from "../../components/navbar";
 import {Breadcrumb, Progress, Accordion, Checkbox} from "flowbite-react";
 import {Link} from "react-router-dom";
@@ -96,7 +95,7 @@ const CourseDetails :FC = function () {
                         <div className="col-span-8">
                             <div className="flex flex-col gap-5">
                                 <div className="overview-section">
-                                    <div className="overview-image overflow-hidden rounded-sm">
+                                    <div className="overview-image overflow-hidden rounded">
                                         <img src="../../../public/images/course-overview.png" alt="Overview"
                                              className="w-fuul h-full object-cover"/>
                                     </div>
@@ -130,7 +129,7 @@ const CourseDetails :FC = function () {
                                         Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
                                     </p>
 
-                                    <div className="relative overflow-hidden rounded-sm">
+                                    <div className="relative overflow-hidden rounded-lg">
                                         <img
                                             src="../../../public/images/course-video.png"
                                             alt=""
@@ -167,7 +166,7 @@ const CourseDetails :FC = function () {
                                         Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
                                     </p>
 
-                                    <div className="relative overflow-hidden rounded-sm">
+                                    <div className="relative overflow-hidden rounded-lg">
                                         <img
                                             src="../../../public/images/course-video.png"
                                             alt=""
@@ -205,7 +204,7 @@ const CourseDetails :FC = function () {
                                         Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms of Use at any time and for any reason.
                                     </p>
 
-                                    <div className="relative overflow-hidden rounded-sm">
+                                    <div className="relative overflow-hidden rounded-lg">
                                         <img
                                             src="../../../public/images/course-video.png"
                                             alt=""

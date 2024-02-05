@@ -213,6 +213,6 @@ label{
 }
 
 
-.course-details-section p{
+p{
   @apply text-gray-500 dark:text-gray-300 pb-4
 }
