@@ -107,6 +107,11 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       },
     },
   },
+  checkbox: {
+    root: {
+      base: "h-4 w-4 rounded focus:ring-0 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 bg-gray-100",
+    }
+  },
   tab: {
     tablist: {
       styles: {

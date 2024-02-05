@@ -40,9 +40,9 @@ const CourseDetails :FC = function () {
         const element = document.getElementById(id);
 
         if (element) {
-            const { x, y } = element.getBoundingClientRect();
+            const scroll = element.getBoundingClientRect();
             window.scrollTo({
-                top: y - 80,
+                top: scroll.y - 80,
                 behavior: "smooth",
             });
         }
@@ -244,7 +244,7 @@ const CourseDetails :FC = function () {
                                             return (
                                                 <Accordion.Panel key={i}>
                                                     <Accordion.Title>
-                                                        <Checkbox id="accept" />
+                                                        <Checkbox id="accept" onClick={(e) => e.stopPropagation()} />
                                                         <span className="text-gray-900 dark:text-gray-200 font-medium pl-2">
                                                             {item.title}
                                                         </span>
