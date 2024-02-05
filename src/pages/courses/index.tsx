@@ -239,7 +239,7 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
             >
                 <div
                     onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                    className="rounded-full bg-green-600 hover:bg-gray-700 dark:hover:bg-gray-500 transition shrink-0 flex items-center justify-center w-[20px] h-[20px] cursor-pointer">
+                    className="rounded-full bg-green-600 hover:bg-green-700 dark:hover:bg-gray-500 transition shrink-0 flex items-center justify-center w-[20px] h-[20px] cursor-pointer">
                     <span className="icon-plus text-white text-xs pt-[2px]" />
                 </div>
             </Popover>

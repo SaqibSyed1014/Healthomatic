@@ -1,6 +1,16 @@
 import type { CustomFlowbiteTheme } from "flowbite-react";
 
 const flowbiteTheme: CustomFlowbiteTheme = {
+  accordion: {
+    content: {
+      base: "py-5 px-5 last:rounded-b-lg bg-white dark:bg-gray-900 first:rounded-t-lg"
+    },
+    title: {
+      flush: {
+        off: "hover:bg-gray-100 focus:ring-0 dark:hover:bg-gray-800"
+      }
+    }
+  },
   badge: {
     root: {
       color: {
@@ -120,6 +130,13 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       href: {
         off: "flex items-center text-xl 2xl:text-2xl font-bold text-gray-900 dark:text-gray-400",
       },
+    }
+  },
+  progress: {
+    base: "w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-900",
+    bar: "rounded-sm text-center font-medium leading-none text-gray-200 dark:text-cyan-100 space-x-2",
+    color: {
+      green: "bg-green-500 dark:bg-green-400"
     }
   }
 };

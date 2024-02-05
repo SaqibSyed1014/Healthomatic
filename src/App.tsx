@@ -33,6 +33,8 @@ import {Modules, HandleModuleContent} from "./pages/create-course/stepper-form/m
 import FAQ from "./pages/create-course/stepper-form/faq";
 import PublishCourse from "./pages/create-course/stepper-form/publish-course";
 
+import CourseDetails from "./pages/course-details";
+
 const App: FC = function () {
   return (
     <BrowserRouter>
@@ -89,7 +91,10 @@ const App: FC = function () {
             <Route path="modules/:moduleName" element={<HandleModuleContent />} />
             <Route path="publish-course" element={<PublishCourse />} />
           </Route>
+
+          <Route path="/course-details" element={<CourseDetails />} />
         </Route>
+
       </Routes>
     </BrowserRouter>
   );
