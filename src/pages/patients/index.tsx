@@ -16,7 +16,7 @@ const PatientsView :FC = function() {
     const [isModalOpen, setModalVisibility] = useState(false)
     return (
         <NavbarSidebar isFooter={false}>
-            <div className="px-6 pt-6 pb-8">
+            <div className="px-6 pt-6 pb-8 relative">
 
                 <FilterBar
                     toggleModal={() => setModalVisibility(true)}

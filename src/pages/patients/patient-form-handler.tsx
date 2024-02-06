@@ -82,12 +82,15 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                 </Modal.Body>
             </Modal>
 
-            {showToast && (
-                <Toast onClick={() => setShowToast(false)} className="absolute top-3 right-6 z-40">
-                    <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-100 text-cyan-500 dark:bg-cyan-800 dark:text-cyan-200">
+            {(
+                <Toast onClick={() => setShowToast(false)} className={`${showToast ? 'slide-in':'slide-out'} toast-message fixed top-20 right-6 z-40`}>
+                    <div className="inline-flex shrink-0 items-center justify-center rounded-lg bg-cyan-100 text-cyan-500 dark:bg-cyan-800 dark:text-cyan-200">
                         <span className="icon-send text-primary-700 text-xl" />
                     </div>
-                    <div className="ml-3 text-sm font-normal">
+
+                    <hr className="h-5 border border-gray-200 ml-4 mr-3" />
+
+                    <div className="text-sm font-normal">
                         Notification sent successfully.
                     </div>
                 </Toast>
