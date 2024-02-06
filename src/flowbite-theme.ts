@@ -33,8 +33,10 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       gray: "text-gray-900 bg-white border border-gray-200 enabled:hover:bg-gray-100 enabled:hover:text-blue-700 :ring-blue-700 focus:text-blue-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:enabled:hover:text-white dark:enabled:hover:bg-gray-700 focus:ring-2",
       info: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
       primary:
-        "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-      lightPrimary: "text-primary-700 bg-primary-100 dark:!text-primary-700 hover:bg-primary-200"
+        "text-white bg-blue-700 ring-none hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
+      lightPrimary: "text-primary-700 bg-primary-100 dark:!text-primary-700 hover:bg-primary-200",
+      lightGray: "text-gray-800 border border-gray-200",
+      primaryOutline: "border border-primary-700 hover:bg-primary-700/10"
     },
     inner: {
       base: "flex items-center transition-all duration-200",
@@ -142,6 +144,14 @@ const flowbiteTheme: CustomFlowbiteTheme = {
     bar: "rounded-sm text-center font-medium leading-none text-gray-200 dark:text-cyan-100 space-x-2",
     color: {
       green: "bg-green-500 dark:bg-green-400"
+    }
+  },
+  table: {
+    head: {
+      base: "group/head text-sm uppercase text-gray-500 dark:text-gray-100 font-semibold border border-gray-200 dark:border-gray-500",
+      cell: {
+        base: "bg-gray-50 dark:bg-gray-700 px-6 py-4"
+      }
     }
   }
 };

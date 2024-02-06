@@ -185,3 +185,78 @@ export let suggestedUsers = [
             image: '../../../images/users/joseph-mcfall.png'
         },
 ]
+
+export const patientsTableCol = [
+    '#',
+    'Patient Name',
+    'Username',
+    'Email',
+    'Courses Assigned'
+]
+
+export const patientsList = [
+    {
+        id: 1,
+        name: 'Abdul Wahab',
+        image: '../../../images/users/roberta-casas.png',
+        username: 'abdul192',
+        email: 'wahab@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 2,
+        name: 'Oscar Garcia',
+        image: '../../../images/users/thomas-lean.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 3,
+        name: 'Arjun Bowen',
+        image: '../../../images/users/michael-gough.png',
+        username: 'arjun582',
+        email: 'arjun_bow@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 4,
+        name: 'Kaysen',
+        image: '../../../images/users/lana-byrd.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 5,
+        name: 'Gael Soto',
+        image: '../../../images/users/joseph-mcfall.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 7,
+        name: 'Gael Soto',
+        image: '../../../images/users/joseph-mcfall.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },,
+    {
+        id: 8,
+        name: 'Gael Soto',
+        image: '../../../images/users/joseph-mcfall.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 9,
+        name: 'Gael Soto',
+        image: '../../../images/users/joseph-mcfall.png',
+        username: 'oscar900',
+        email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+]

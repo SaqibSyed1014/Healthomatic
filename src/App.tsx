@@ -34,6 +34,7 @@ import FAQ from "./pages/create-course/stepper-form/faq";
 import PublishCourse from "./pages/create-course/stepper-form/publish-course";
 
 import CourseDetails from "./pages/course-details";
+import PatientsView from "./pages/patients/index";
 
 const App: FC = function () {
   return (
@@ -93,6 +94,8 @@ const App: FC = function () {
           </Route>
 
           <Route path="/course-details" element={<CourseDetails />} />
+
+          <Route path="/patients" element={<PatientsView />} />
         </Route>
 
       </Routes>

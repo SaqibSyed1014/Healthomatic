@@ -9,6 +9,9 @@ import {
   HiCog,
   HiSearch,
 } from "react-icons/hi";
+import { IoAddCircle } from "react-icons/io5";
+import { RiArticleFill } from "react-icons/ri";
+import { FaUserInjured } from "react-icons/fa6";
 
 import { useSidebarContext } from "../context/SidebarContext";
 import isSmallScreen from "../helpers/is-small-screen";
@@ -54,7 +57,7 @@ const ExampleSidebar: FC = function () {
               <Sidebar.ItemGroup>
                 <Sidebar.Item
                     href="/courses"
-                    icon={HiChartPie}
+                    icon={RiArticleFill}
                     className={
                       "/courses" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""
                     }
@@ -63,12 +66,22 @@ const ExampleSidebar: FC = function () {
                 </Sidebar.Item>
                 <Sidebar.Item
                     href="/course/create"
-                    icon={HiChartPie}
+                    icon={IoAddCircle}
                     className={
                       "/course/create" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""
                     }
                 >
                   Course Creation
+                </Sidebar.Item>
+
+                <Sidebar.Item
+                    href="/patients"
+                    icon={FaUserInjured}
+                    className={
+                      "/patients" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""
+                    }
+                >
+                  Patients
                 </Sidebar.Item>
                 {/*<Sidebar.Item*/}
                 {/*  href="/"*/}
