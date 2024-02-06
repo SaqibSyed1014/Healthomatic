@@ -8,23 +8,36 @@ import {
 import { FaChevronDown } from "react-icons/fa";
 import {patientsTableCol, patientsList} from "../../data/contants";
 import { Popover } from 'react-tiny-popover'
-import {useState} from "react";
+import {PropsWithChildren, useState} from "react";
+import PatientFormHandler from "./patient-form-handler";
 
 const PatientsView :FC = function() {
+    const [isModalOpen, setModalVisibility] = useState(false)
     return (
         <NavbarSidebar isFooter={false}>
             <div className="px-6 pt-6 pb-8">
 
-                <FilterBar />
+                <FilterBar
+                    toggleModal={() => setModalVisibility(true)}
+                />
 
                 <PatientsTable />
+
+                <PatientFormHandler
+                    modalOpen={isModalOpen}
+                    toggleModal={() => setModalVisibility(false)}
+                />
 
             </div>
         </NavbarSidebar>
     )
 }
 
-const FilterBar: FC = () => {
+interface FilterProps {
+    toggleModal: (val :boolean) => void
+}
+
+const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
     return (
@@ -87,6 +100,7 @@ const FilterBar: FC = () => {
                 <Button
                     color="primary"
                     className="shrink-0"
+                    onClick={toggleModal}
                 >
                         <span className="icon-plus mr-2" />
                         Add Patient
