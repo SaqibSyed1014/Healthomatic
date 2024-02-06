@@ -5,7 +5,6 @@ import type { FC } from "react";
 import { useEffect, useState } from "react";
 import {
   HiAdjustments,
-  HiChartPie,
   HiCog,
   HiSearch,
 } from "react-icons/hi";

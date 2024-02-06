@@ -31,7 +31,6 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                                 name="patient-first-name"
                                 label="First Name*"
                                 placeholder="name@example.com"
-                                avoidSlash={true}
                                 getInputValue={() => {}}
                             />
                         </div>
@@ -41,7 +40,6 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                                 name="patient-last-name"
                                 label="Last Name*"
                                 placeholder="name@example.com"
-                                avoidSlash={true}
                                 getInputValue={() => {}}
                             />
                         </div>
@@ -52,7 +50,6 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                                 name="patient-email"
                                 label="Email"
                                 placeholder="name@example.com"
-                                avoidSlash={true}
                                 getInputValue={() => {}}
                             />
                         </div>
@@ -68,9 +65,7 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                                 type="password"
                                 name="patient-password"
                                 placeholder="PFqI9WGVIEw4B0Xv"
-                                avoidSlash={true}
-                                getInputValue={() => {
-                                }}
+                                getInputValue={() => {}}
                             />
                         </div>
 

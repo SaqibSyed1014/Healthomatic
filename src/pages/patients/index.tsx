@@ -10,6 +10,7 @@ import {patientsTableCol, patientsList} from "../../data/contants";
 import { Popover } from 'react-tiny-popover'
 import {PropsWithChildren, useState} from "react";
 import PatientFormHandler from "./patient-form-handler";
+import {Link} from 'react-router-dom'
 
 const PatientsView :FC = function() {
     const [isModalOpen, setModalVisibility] = useState(false)
@@ -106,13 +107,15 @@ const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
                         Add Patient
                 </Button>
 
-                <Button
-                    color="primaryOutline"
-                    className="shrink-0"
-                >
-                    <span className="icon-letter mr-2 text-primary-700" />
-                    <span className="text-primary-700">Generate Letter</span>
-                </Button>
+                <Link to="/letter-generator">
+                    <Button
+                        color="primaryOutline"
+                        className="shrink-0"
+                    >
+                        <span className="icon-letter mr-2 text-primary-700" />
+                        <span className="text-primary-700">Generate Letter</span>
+                    </Button>
+                </Link>
             </div>
         </section>
     )

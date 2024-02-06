@@ -35,6 +35,7 @@ import PublishCourse from "./pages/create-course/stepper-form/publish-course";
 
 import CourseDetails from "./pages/course-details";
 import PatientsView from "./pages/patients/index";
+import LetterGenerator from "./pages/patients/letter-generator";
 
 const App: FC = function () {
   return (
@@ -96,6 +97,7 @@ const App: FC = function () {
           <Route path="/course-details" element={<CourseDetails />} />
 
           <Route path="/patients" element={<PatientsView />} />
+          <Route path="/letter-generator" element={<LetterGenerator />} />
         </Route>
 
       </Routes>
