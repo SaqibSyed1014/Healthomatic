@@ -152,6 +152,27 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       cell: {
         base: "bg-gray-50 dark:bg-gray-700 px-6 py-4"
       }
+    },
+    body: {
+      cell: {
+        base: "group-first/body:group-first/row:first:rounded-tl-lg group-first/body:group-first/row:last:rounded-tr-lg px-6 py-4"
+      }
+    }
+  },
+  pagination: {
+    pages: {
+      previous: {
+        base: "w-10 ml-0 rounded-l-lg border border-gray-300 bg-white p-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5"
+      },
+      next: {
+        base: "rounded-r-lg border border-gray-300 bg-white p-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        icon: "h-5 w-5"
+      },
+      selector: {
+        base: "w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
+        active: "text-primary-700 bg-primary-100 :hover:bg-primary-200 font-medium"
+      }
     }
   }
 };

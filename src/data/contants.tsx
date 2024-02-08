@@ -237,26 +237,34 @@ export const patientsList = [
     },
     {
         id: 7,
-        name: 'Gael Soto',
-        image: '../../../images/users/joseph-mcfall.png',
+        name: 'Mirla David',
+        image: '../../../images/users/roberta-casas.png',
         username: 'oscar900',
         email: 'oscar458@hotmail.com',
         coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
     },,
     {
         id: 8,
-        name: 'Gael Soto',
-        image: '../../../images/users/joseph-mcfall.png',
+        name: 'Sokuha Jin',
+        image: '../../../images/users/jese-leos.png',
         username: 'oscar900',
         email: 'oscar458@hotmail.com',
         coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
     },
     {
         id: 9,
-        name: 'Gael Soto',
-        image: '../../../images/users/joseph-mcfall.png',
+        name: 'Neil Armstrong',
+        image: '../../../images/users/neil-sims.png',
         username: 'oscar900',
         email: 'oscar458@hotmail.com',
+        coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
+    },
+    {
+        id: 10,
+        name: 'Gojo Satoru',
+        image: '../../../images/users/joseph-mcfall.png',
+        username: 'sensei718',
+        email: 'gojogojo@hotmail.com',
         coursesAssigned: ['MTL123', 'MT212', 'MTL135', 'MT250']
     },
 ]

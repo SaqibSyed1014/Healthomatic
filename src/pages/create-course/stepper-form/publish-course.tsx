@@ -12,11 +12,13 @@ const PublishCourse: FC = () => {
                 <Link to="/course/create/modules">
                     <Button color="gray">Previous</Button>
                 </Link>
+                <Link to="/courses">
                     <Button
                         color="primary"
                     >
                         Save & Publish
                     </Button>
+                </Link>
             </div>
         </div>
 

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import NavbarSidebar from "../../layouts/navbar-sidebar";
-import {Button, Label, TextInput, Checkbox, Table, Avatar} from "flowbite-react";
+import {Button, Label, TextInput, Checkbox, Table, Avatar, Pagination} from "flowbite-react";
 import {
     HiSearch,
     HiOutlineDotsHorizontal
@@ -122,6 +122,9 @@ const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
 }
 
 const PatientsTable: FC = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const onPageChange = (page: number) => setCurrentPage(page);
+
     return (
         <div className="pt-6">
             <Table hoverable>
@@ -161,6 +164,29 @@ const PatientsTable: FC = () => {
                     })}
                 </Table.Body>
             </Table>
+
+            <div className="bg-white p-4 rounded-b-lg border-t border-gray-200">
+                <div className="flex overflow-x-auto justify-between items-center">
+                <span className="text-gray-500">
+                    Showing&nbsp;
+                    <span className="text-gray-900 font-medium">
+                         1 - 10
+                    </span>
+                    &nbsp;of&nbsp;
+                    <span className="text-gray-900 font-medium">
+                         1000
+                    </span>
+                </span>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={100}
+                        onPageChange={onPageChange}
+                        previousLabel=""
+                        nextLabel=""
+                        showIcons
+                    />
+                </div>
+            </div>
         </div>
     )
 }
