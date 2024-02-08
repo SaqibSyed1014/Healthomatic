@@ -51,7 +51,6 @@ const InputFieldWithLabelAndCount: FC<PropsWithChildren<FieldProps>> =
     }, [inputValue]);
 
     useEffect(() => {
-        console.log('test it ', showError)
         if (getErrorState) getErrorState(showError);
     }, [showError]);
 

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import {PropsWithChildren, useState} from "react";
-import {Button, Modal, Label, Toast} from 'flowbite-react'
+import {Button, Modal, Label, Toast, TextInput} from 'flowbite-react'
 import InputWithOptions from "../../components/input-with-options";
 
 interface ModalProp {
@@ -9,7 +9,20 @@ interface ModalProp {
 }
 
 const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggleModal }) => {
+    const [password, setPassword] = useState("");
     const [showToast, setShowToast] = useState(false);
+
+    const generatePassword = () => {
+        let charset = "";
+        let newPassword = "";
+
+        charset += "!@#$%^&*()0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (let i = 0; i < 12; i++) {
+            newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+
+        setPassword(newPassword);
+    };
 
     function performAction() {
         toggleModal();
@@ -57,15 +70,19 @@ const PatientFormHandler: FC<PropsWithChildren<ModalProp>> = ({ modalOpen, toggl
                         <div className="col-span-2">
                             <div className="flex justify-between">
                                 <Label htmlFor="patient-password">Password</Label>
-                                <small className="text-primary-700 dark:text-primary-500 font-medium cursor-pointer">
+                                <small
+                                    onClick={() => generatePassword()}
+                                    className="text-primary-700 hover:text-primary-500 dark:text-primary-500 dark:hover:text-primary-600 transition font-medium cursor-pointer"
+                                >
                                     Auto generate
                                 </small>
                             </div>
-                            <InputWithOptions
-                                type="password"
+                            <TextInput
+                                type="text"
                                 name="patient-password"
+                                value={password}
                                 placeholder="PFqI9WGVIEw4B0Xv"
-                                getInputValue={() => {}}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
