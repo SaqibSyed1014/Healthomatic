@@ -35,7 +35,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       primary:
         "text-white bg-blue-700 ring-none hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
       lightPrimary: "text-primary-700 bg-primary-100 dark:!text-primary-700 hover:bg-primary-200",
-      lightGray: "text-gray-800 border border-gray-200",
+      lightGray: "text-gray-800 border border-gray-200 dark:border-gray-500",
       primaryOutline: "border border-primary-700 hover:bg-primary-700/10 text-primary-700 pb-px pt-0.5"
     },
     inner: {
@@ -171,7 +171,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
       },
       selector: {
         base: "w-10 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
-        active: "text-primary-700 bg-primary-100 :hover:bg-primary-200 font-medium"
+        active: "text-primary-700 bg-primary-100 dark:text-gray-200 dark:bg-gray-700 font-medium"
       }
     }
   }

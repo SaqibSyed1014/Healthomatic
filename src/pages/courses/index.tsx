@@ -206,7 +206,9 @@ const CourseMeta: FC<PropsWithChildren<PropsMeta>> = function ({ selectedUsers }
                                     className="px-3"
                                 />
 
-                                <p className="text-gray-500 font-medium text-left leading-none px-3">Suggested people</p>
+                                <p className="text-gray-500 font-medium text-left leading-none px-3 pb-0">
+                                    Suggested people
+                                </p>
 
                                 <div className="flex flex-col -mt-1">
                                     {users?.length ?

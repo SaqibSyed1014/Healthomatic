@@ -64,7 +64,7 @@ const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
                         align='end'
                         onClickOutside={() => setIsPopoverOpen(false)}
                         content={
-                            <div className="flex flex-col gap-3 bg-white dark:bg-gray-600 text-gray-900 font-medium shadow-lg rounded-lg text-sm mt-1.5 px-4 py-3">
+                            <div className="flex flex-col gap-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-medium shadow-lg rounded-lg text-sm mt-1.5 px-4 py-3">
                                 <span>Filter By</span>
                                 <div className="action-option flex items-center gap-3">
                                     <Checkbox />
@@ -89,7 +89,7 @@ const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
                             color="lightGray"
                             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
                         >
-                            <span className="flex items-center gap-2">
+                            <span className="flex items-center gap-2 dark:text-gray-300">
                                 <span className="icon-filter" />
                                 Filter
                                 <FaChevronDown />
@@ -165,15 +165,15 @@ const PatientsTable: FC = () => {
                 </Table.Body>
             </Table>
 
-            <div className="bg-white p-4 rounded-b-lg border-t border-gray-200">
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-b-lg border-t border-gray-200 dark:border-gray-700">
                 <div className="flex overflow-x-auto justify-between items-center">
-                <span className="text-gray-500">
+                <span className="text-gray-500 dark:text-gray-400">
                     Showing&nbsp;
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-gray-900 dark:text-gray-100 font-medium">
                          1 - 10
                     </span>
                     &nbsp;of&nbsp;
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-gray-900 dark:text-gray-100 font-medium">
                          1000
                     </span>
                 </span>
@@ -201,20 +201,20 @@ const ActionCell: FC = function() {
             align='end'
             onClickOutside={() => setIsPopoverOpen(false)}
             content={
-                 <div className="flex flex-col py-1 bg-white dark:bg-gray-600 text-gray-500 shadow-lg rounded-lg text-sm 2xl:text-base">
-                     <div className="action-option flex items-center gap-3 py-2 px-4 hover:bg-gray-200 cursor-pointer">
+                 <div className="flex flex-col py-1 bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-100 shadow-lg rounded-lg text-sm 2xl:text-base">
+                     <div className="action-option flex items-center gap-3 py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-800 cursor-pointer">
                          <div className="flex items-center justify-center w-6">
                              <span className="icon-edit text-lg" />
                          </div>
                          Update course
                      </div>
-                     <div className="action-option flex items-center gap-3 py-2 px-4 hover:bg-gray-200 cursor-pointer">
+                     <div className="action-option flex items-center gap-3 py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-800 cursor-pointer">
                          <div className="flex items-center justify-center w-6">
                             <span className="icon-opened-eye" />
                          </div>
                          Edit medical details
                      </div>
-                     <div className="action-option text-red-500 flex items-center gap-3 py-2 px-4 hover:bg-gray-200 cursor-pointer">
+                     <div className="action-option text-red-500 dark:text-dark-300 flex items-center gap-3 py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-800 cursor-pointer">
                          <div className="flex items-center justify-center w-6">
                             <span className="icon-trash-bin text-lg hover:text-red-500" />
                          </div>
