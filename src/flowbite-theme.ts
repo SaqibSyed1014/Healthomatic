@@ -36,7 +36,7 @@ const flowbiteTheme: CustomFlowbiteTheme = {
         "text-white bg-blue-700 ring-none hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700",
       lightPrimary: "text-primary-700 bg-primary-100 dark:!text-primary-700 hover:bg-primary-200",
       lightGray: "text-gray-800 border border-gray-200",
-      primaryOutline: "border border-primary-700 hover:bg-primary-700/10"
+      primaryOutline: "border border-primary-700 hover:bg-primary-700/10 text-primary-700 pb-px pt-0.5"
     },
     inner: {
       base: "flex items-center transition-all duration-200",

@@ -113,7 +113,7 @@ const FilterBar: FC<PropsWithChildren<FilterProps>> = ({ toggleModal }) => {
                         className="shrink-0"
                     >
                         <span className="icon-letter mr-2 text-primary-700" />
-                        <span className="text-primary-700">Generate Letter</span>
+                        Generate Letter
                     </Button>
                 </Link>
             </div>
